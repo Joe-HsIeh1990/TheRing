@@ -3,7 +3,7 @@
 ![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/readhome.png) 
 
 ## Demo
-https://joe-hsieh1990.github.io/TheRing/#/
+https://joe-hsieh1990.github.io/TheRIng/#/
 
 ## 主要技術
 * Vue Cli 3
