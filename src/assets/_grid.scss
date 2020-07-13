@@ -13,4 +13,9 @@
         @content
     }
     
+};
+@mixin minphone {
+    @media (max-width: 375px) {
+        @content
+    }
 }

@@ -92,7 +92,7 @@
                       class="btn btn-info p-1 mr-2"
                       @click.prevent="ToProductsDetaill(item.id)"
                     >more</a>
-                    <a href="#" class="btn btn-primary p-1">加入購物車</a>
+                    <a href="#" class="btn btn-primary p-1" @click.prevent="getCurrentProduct(item.id)">加入購物車</a>
                   </div>
                 </div>
               </div>

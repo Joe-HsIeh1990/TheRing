@@ -55,22 +55,31 @@
                   </div>
                   <span class="ml-auto order-item-price">{{ items.total | currency }}</span>
                 </div>
-                <div class="d-flex customerCart-order-item align-items-start text-success" v-if="cart.final_total&&cart.final_total !==cart.total">
+                <div
+                  class="d-flex customerCart-order-item align-items-start text-success"
+                  v-if="cart.final_total&&cart.final_total !==cart.total"
+                >
                   <div class="d-flex flex-column">
                     <h5 class="mb-0">已套用優惠</h5>
                     <span>{{ (cart.final_total/cart.total*100) }}% OFF</span>
                   </div>
-                  <span class="ml-auto order-item-price">-{{ (cart.total -cart.final_total) | currency }}</span>
+                  <span
+                    class="ml-auto order-item-price"
+                  >-{{ (cart.total -cart.final_total) | currency }}</span>
                 </div>
                 <div class="input-group input-group-sm">
-                  <input type="text" class="form-control"  placeholder="請輸入優惠碼" v-model="coupon_num">
+                  <input type="text" class="form-control" placeholder="請輸入優惠碼" v-model="coupon_num" />
                   <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" @click="addCouponCode">套用優惠碼</button>
+                    <button
+                      class="btn btn-outline-secondary"
+                      type="button"
+                      @click="addCouponCode"
+                    >套用優惠碼</button>
                   </div>
                 </div>
               </div>
             </div>
-            <hr class="my-3"/>
+            <hr class="my-3" />
             <div class="pb-3 px-3 pt-0 customerCart-order-Next">
               <div class="d-flex justify-content-end align-content-center mb-3 align-items-end">
                 <p class="subtotal mr-2">總計</p>
@@ -104,12 +113,14 @@ export default {
       vm.cartdisable = id;
       vm.$store.dispatch("CardModules/deleteCart", id);
     },
-     addCouponCode() {
+    addCouponCode() {
       const vm = this;
-      if (vm.coupon_num !== '') {
-        vm.$store.dispatch('CardModules/addCouponCode', vm.coupon_num).then(() => {
-          vm.coupon_num = '';
-        });
+      if (vm.coupon_num !== "") {
+        vm.$store
+          .dispatch("CardModules/addCouponCode", vm.coupon_num)
+          .then(() => {
+            vm.coupon_num = "";
+          });
       }
     },
     GoOrder() {
@@ -133,6 +144,6 @@ export default {
   },
   created() {
     this.getCart();
-  }
+  },
 };
 </script>

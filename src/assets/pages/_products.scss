@@ -88,6 +88,12 @@
     position: relative;
     @include phone() {
       width: 30%;
+      padding-top: 10%;
+    }
+    @include minphone(){
+      img{
+        padding-top:25%;
+      }
     }
   }
   &-hover {

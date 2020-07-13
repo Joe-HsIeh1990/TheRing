@@ -1,6 +1,8 @@
 <template >
   <nav class="nav shadow-sm py-md-0 px-0">
-    <div class="nav-container d-flex px-0 flex-wrap justify-content-between align-content-center p-2">
+    <div
+      class="nav-container d-flex px-0 flex-wrap justify-content-between align-content-center p-2"
+    >
       <div class="nav-logo d-flex align-items-center">
         <router-link to="/" class="text-decoration-none">
           <a href="#" class>
@@ -21,9 +23,7 @@
                 <tbody>
                   <tr class="text-nowrap" v-if="cartlength == 0">
                     <td class="p-0">
-                      <router-link to="/custom/products" class="text-decoration-none">
-                        <a href="#" class="btn btn-info btn-block">目前沒有商品加入!</a>
-                      </router-link>
+                      <a href="#" class="btn btn-info btn-block">目前沒有商品加入!</a>
                     </td>
                   </tr>
                   <tr v-for="item in cart.carts" :key="item.id">
@@ -38,9 +38,12 @@
                   </tr>
                 </tbody>
               </table>
-              <router-link to="/custom/customcart" class="text-decoration-none">
-                <a href="#" class="GoCustomerCart btn btn-danger btn-block">前往購物車</a>
-              </router-link>
+
+              <a
+                href="#"
+                class="GoCustomerCart btn btn-danger btn-block"
+                @click.prevent="GoCustomerCart"
+              >前往購物車</a>
             </div>
           </div>
         </div>
@@ -55,11 +58,9 @@
             <a href="#" class="font-weight-bold">首頁</a>
           </li>
         </router-link>
-        <router-link to="/custom/products" class="text-decoration-none">
-          <li class="nav-list mr-md-5 mr-0 py-3 py-md-0 pl-3 pl-md-0">
+          <li class="nav-list mr-md-5 mr-0 py-3 py-md-0 pl-3 pl-md-0" @click.prevent="GoProduct">
             <a href="#" class="font-weight-bold">商品</a>
           </li>
-        </router-link>
         <router-link to="/custom/login" class="text-decoration-none">
           <li class="nav-list mr-md-5 mr-0 py-3 py-md-0 pl-3 pl-md-0">
             <a href="#" class="font-weight-bold">
@@ -96,7 +97,11 @@
                   </tr>
                 </tbody>
               </table>
-              <a href="#" class="GoCustomerCart btn btn-danger btn-block" @click.prevent="GoCustomerCart">前往購物車</a>
+              <a
+                href="#"
+                class="GoCustomerCart btn btn-danger btn-block"
+                @click.prevent="GoCustomerCart"
+              >前往購物車</a>
             </div>
           </div>
         </li>
@@ -108,7 +113,7 @@
 import { mapGetters, mapActions } from "vuex";
 import $ from "jquery";
 export default {
-  name: 'Navbar',
+  name: "Navbar",
   data() {
     return {
       ham: false,
@@ -125,6 +130,9 @@ export default {
         this.ham = false;
         $(".nav-content").slideUp("slow");
       }
+    },
+    GoProduct() {
+      this.$router.push("/custom/products");
     },
     GoCustomerCart() {
       this.$router.push("/custom/customcart");

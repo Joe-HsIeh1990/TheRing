@@ -19,7 +19,7 @@ import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import "swiper/css/swiper.css";
 import $ from "jquery";
 export default {
-  name: 'AminDeleteModal',
+  name: "AminDeleteModal",
   components: {
     Swiper,
     SwiperSlide
@@ -64,9 +64,11 @@ export default {
   methods: {
     ToProductsDetaill(id) {
       this.$router.push(`/custom/detail/${id}`);
-      $("html,body").animate({
-        scrollTop: 0
-      });
+      setTimeout(() => {
+        $("html,body").animate({
+          scrollTop: 0
+        });
+      }, 250);
     }
   }
 };
