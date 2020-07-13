@@ -1,0 +1,19 @@
+.customerCart {
+    height: 80%;
+    &-img {
+        max-width: 180px;
+    }
+    &-order {
+        background-color: $color-first;
+    }
+    &-content {
+        background-color: $color-first;
+    }
+    &-list {
+        height: auto;
+        @include boxshadow
+    }
+    &-order {
+        @include boxshadow
+    }
+}

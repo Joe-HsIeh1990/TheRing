@@ -1,0 +1,50 @@
+.nav {
+    background-color: #000000;
+    height: 10vh;
+
+    &-content {
+        margin-right: 50px;
+    }
+    @include phone() {
+        height: auto;
+        border-bottom: none;
+    }
+    a {
+        text-decoration: none;
+        color: #fff;
+        line-height: 16px;
+    }
+    &-list {
+        cursor: pointer;
+        a {
+            &:hover {
+                color: $color-sec;
+            }
+        }
+        @include phone() {
+            &:hover {
+                background-color: $color-sec;
+            }
+        }
+    }
+    &-logo {
+        @include pad() {
+            margin-left: 50px;
+        }
+        @include phone() {
+            margin-left: 0;
+        }
+    }
+    &-content {
+        @include pad() {
+            margin-right: 50px;
+        }
+        @include phone() {
+            width: 100%;
+        }
+    }
+}
+
+.hamburger {
+    @include hamburger(#fff, #000000);
+}
