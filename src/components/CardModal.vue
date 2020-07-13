@@ -49,8 +49,9 @@
 </template>
 
 <script>
-import $ from 'jquery';
+import $ from "jquery";
 export default {
+  name: "CardModal",
   props: {
     theProduct: {
       type: Object,
@@ -71,7 +72,7 @@ export default {
         $("#productModal").modal("hide");
         vm.cartdisable = "";
         vm.counts = 1;
-        console.log(vm.cartdisable)
+        console.log(vm.cartdisable);
       });
     }
   }

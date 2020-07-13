@@ -19,6 +19,7 @@ import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import "swiper/css/swiper.css";
 import $ from "jquery";
 export default {
+  name: 'AminDeleteModal',
   components: {
     Swiper,
     SwiperSlide

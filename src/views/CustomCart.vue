@@ -1,7 +1,7 @@
 <template>
   <div class="bg-white">
     <loading :active.sync="isLoading" />
-    <div class="pt-5 container customerCart">
+    <div class="pt-5 container customerCart mb-2">
       <h1 class="text-center customerCart-title mb-5 text-secondary" v-if="cart.total">購物車</h1>
       <h5 class="text-center py-5 mt-3 mb-5 nonecart" v-if="!cart.total">目前您的購物車沒有任何商品!</h5>
       <hr s v-if="!cart.total" />

@@ -16,7 +16,7 @@
         </div>
       </div>
     </header>
-    <div class="new new-container1 py-4 px-0 mt-5" id="hobbit">
+    <div class="new new-container1 py-4 px-0 mt-md-5" id="hobbit">
       <div class="new-content d-flex flex-wrap pb-2">
         <div class="col-md-6 col-12 new-photo new-list px-0"></div>
         <div
@@ -27,7 +27,7 @@
             <p class="text-white">主角比爾博被巫師甘道夫挑上，激發出他冒險的慾望，與十三個矮人組成探險隊，前往有一條惡龍守護的孤山，展開了尋寶之旅。</p>
             <p class="text-white">這次我們將整個電影縮小成戰棋，使用手上的戰旗陪著比爾博·巴金斯一起經歷這宏偉的史詩戰役。</p>
             <div class="d-flex my-2">
-              <router-link to="/custom/detll/-MBCOOtjfBn77TK34Kgb">
+              <router-link to="/custom/detail/-MBCOOtjfBn77TK34Kgb">
                 <div>
                   <a href="#" class="btn btn-info">了解更多</a>
                 </div>
@@ -49,7 +49,7 @@
         </div>
       </div>
     </div>
-    <div class="new new-container2 py-4 px-0 mt-5" id="ring">
+    <div class="new new-container2 py-4 px-0 " id="ring">
       <div class="new-content d-flex flex-wrap flex-row-reverse">
         <div class="col-md-6 col-12 new-photo2 new-list px-0"></div>
         <div
@@ -59,7 +59,7 @@
             <h3 class="font-weight-bold my-2 px-0 text-warning">魔戒</h3>
             <p class="text-white">主角哈比人佛羅多·巴金斯以及魔戒遠征隊所執行的毀掉至尊魔戒任務，以及消滅至尊魔戒的製造者黑暗魔君索倫。</p>
             <p class="text-white">這次我們將整個電影縮小成戰棋，使用手上的戰旗陪著佛羅多·巴金斯一起經歷這宏偉的史詩戰役。</p>
-            <router-link to="/custom/detll/-MBC8q0vvrIus-EemlMr">
+            <router-link to="/custom/detail/-MBC8q0vvrIus-EemlMr">
               <div class="d-flex my-2">
                 <a href="#" class="btn btn-warning">了解更多</a>
               </div>
@@ -153,7 +153,7 @@ export default {
   mounted() {
     $(window).scroll(function() {
       let h = $(window).scrollTop();
-      if (h > 600) {
+      if (h > 568) {
         $(".gotop").fadeIn();
       } else {
         $(".gotop").fadeOut();

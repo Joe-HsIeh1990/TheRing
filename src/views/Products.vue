@@ -55,12 +55,8 @@
           <ul
             class="commodity-content col-12 mx-auto row list-unstyled px-0 align-items-center border pt-2"
           >
-            <li
-              class="commodity-list col-12 col-md-6 col-lg-3 mb-3"
-              v-for="item in products"
-              :key="item.id"
-            >
-              <div class="card d-flex flex-row flex-md-column">
+            <li class=" commodity-list col-12 col-md-6 col-lg-3 mb-3" v-for="item in products" :key="item.id">
+              <div class="card d-flex flex-row flex-md-column ">
                 <div class="card-img" @mousemove.stop="HoverShow">
                   <img :src="item.imageUrl" class="card-img-top img-fluid" :data-num="item.id" alt />
                   <div
@@ -96,15 +92,11 @@
                       class="btn btn-info p-1 mr-2"
                       @click.prevent="ToProductsDetaill(item.id)"
                     >more</a>
-                    <a
-                      href="#"
-                      class="btn btn-primary p-1"
-                      @click.prevent="getCurrentProduct(item.id)"
-                    >加入購物車</a>
+                    <a href="#" class="btn btn-primary p-1">加入購物車</a>
                   </div>
                 </div>
               </div>
-            </li>mi 
+            </li>
           </ul>
           <PaginationPhone
             :pages="pagination"

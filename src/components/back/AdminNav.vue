@@ -31,6 +31,7 @@
 </template>
 <script>
 export default {
+  name: 'AdminNav',
   methods: {
     signout() {
       this.$store.dispatch("AdminMemberModules/signout");

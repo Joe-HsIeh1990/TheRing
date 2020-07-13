@@ -1,10 +1,10 @@
 <template>
   <div>
-      <Navbar />
       <main>
+      <Navbar />
           <router-view></router-view>
-      </main>
       <Footer />
+      </main>
   </div>
 </template>
 
@@ -12,6 +12,7 @@
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 export default {
+    name: 'Dashboard',
     components: {
         Navbar,
         Footer

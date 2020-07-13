@@ -27,6 +27,7 @@
 </template>
 <script>
 export default {
+  name: 'AminDeleteModal',
   props: {
     deleteName: {
       type: Object,

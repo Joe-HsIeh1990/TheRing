@@ -1,11 +1,9 @@
 <template >
   <nav class="nav shadow-sm py-md-0 px-0">
-    <div
-      class="nav-container container-lg d-flex px-0 flex-wrap justify-content-between align-content-center"
-    >
+    <div class="nav-container d-flex px-0 flex-wrap justify-content-between align-content-center p-2">
       <div class="nav-logo d-flex align-items-center">
         <router-link to="/" class="text-decoration-none">
-          <a href="#">
+          <a href="#" class>
             <h2 class="text-white">AsStore</h2>
           </a>
         </router-link>
@@ -98,9 +96,7 @@
                   </tr>
                 </tbody>
               </table>
-              <router-link to="/custom/customcart">
-                <a href="#" class="GoCustomerCart btn btn-danger btn-block">前往購物車</a>
-              </router-link>
+              <a href="#" class="GoCustomerCart btn btn-danger btn-block" @click.prevent="GoCustomerCart">前往購物車</a>
             </div>
           </div>
         </li>
@@ -112,6 +108,7 @@
 import { mapGetters, mapActions } from "vuex";
 import $ from "jquery";
 export default {
+  name: 'Navbar',
   data() {
     return {
       ham: false,
@@ -129,9 +126,9 @@ export default {
         $(".nav-content").slideUp("slow");
       }
     },
-    // GoCustomerCart() {
-    //   this.$router.push("/custom/customcart");
-    // },
+    GoCustomerCart() {
+      this.$router.push("/custom/customcart");
+    },
     ...mapActions("CardModules", ["getCart"])
   },
   computed: {

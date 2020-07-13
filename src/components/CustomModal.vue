@@ -48,6 +48,7 @@
 <script>
 import $ from "jquery";
 export default {
+  name: 'CustomModal',
   props: {
     thisProduct: {
       type: Object,

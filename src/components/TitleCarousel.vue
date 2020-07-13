@@ -34,6 +34,7 @@ import { mapGetters } from "vuex";
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import "swiper/css/swiper.css";
 export default {
+  name: 'TitleCarousel',
   components: {
     Swiper,
     SwiperSlide

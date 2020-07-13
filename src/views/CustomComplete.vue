@@ -1,6 +1,6 @@
 <template>
   <div class="pt-8 container CustomComplete bg-white">
-    <h1 class="text-center mb-4 pt-5text-secondary">付款成功</h1>
+    <h1 class="text-center mb-4 pt-5 text-secondary">付款成功</h1>
     <div class="row mb-7">
       <div class="col-sm-4">
         <div class="alert alert-success rounded-pill text-center" role="alert">
@@ -18,7 +18,7 @@
         </div>
       </div>
     </div>
-    <div class="px-3 py-sm-5 py-4 CustomComplete-data mb-sm-8 mb-6">
+    <div class="px-3 py-sm-5 py-4 CustomComplete-content mb-sm-8 mb-6">
       <h4 class="text-center mb-4">感謝您的訂購，歡迎您再次光臨!</h4>
       <div class="mx-auto CompleteOrders mb-1">
         <span class="mr-2">訂單完成時間:</span>

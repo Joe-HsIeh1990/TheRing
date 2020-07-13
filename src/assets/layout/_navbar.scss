@@ -1,9 +1,8 @@
 .nav {
     background-color: #000000;
-    height: 10vh;
-
-    &-content {
-        margin-right: 50px;
+    // height: 50px;
+    &-container {
+        width: 100%;
     }
     @include phone() {
         height: auto;
@@ -21,26 +20,19 @@
                 color: $color-sec;
             }
         }
-        @include phone() {
-            &:hover {
-                background-color: $color-sec;
-            }
-        }
     }
+
     &-logo {
-        @include pad() {
-            margin-left: 50px;
-        }
+        margin-left: 50px;
         @include phone() {
             margin-left: 0;
         }
     }
     &-content {
-        @include pad() {
-            margin-right: 50px;
-        }
+        margin-right: 50px;
         @include phone() {
             width: 100%;
+            margin-right: 0;
         }
     }
 }

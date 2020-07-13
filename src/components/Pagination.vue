@@ -35,6 +35,7 @@
 </template>
 <script>
 export default {
+  name: 'Pagination',
   props: {
     pages: {
       type: Object,

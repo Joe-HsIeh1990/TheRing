@@ -18,19 +18,19 @@
           <div class="top-img d-flex">
             <a href="#">
               <img
-                src="../assets/images/iconfinder_3_939757.png"
+                src="https://raw.githubusercontent.com/hexschool/webLayoutTraining1st/master/week3/icon-fb.svg"
                 alt
               />
             </a>
             <a href="#">
               <img
-                src="../assets/images/iconfinder_25_social_2609558.png"
+                src="https://raw.githubusercontent.com/hexschool/webLayoutTraining1st/master/week3/icon-ig.svg"
                 alt
               />
             </a>
             <a href="#">
               <img
-                src="../assets/images/iconfinder_line_1807543.png"
+                src="https://raw.githubusercontent.com/hexschool/webLayoutTraining1st/master/week3/icon-line.svg"
                 alt
               />
             </a>
@@ -40,14 +40,14 @@
           <div class="main-container">
             <div class="main-item d-flex align-items-center">
               <img
-                src="../assets/images/baseline_call_white_18dp.png"
+                src="https://raw.githubusercontent.com/hexschool/webLayoutTraining1st/master/week3/icon-phone.svg"
                 alt
               />
               <h2 class="main-first">0800-000-000</h2>
             </div>
             <div class="main-item d-flex align-items-center">
               <img
-                src="../assets/images/baseline_email_white_18dp.png"
+                src="https://raw.githubusercontent.com/hexschool/webLayoutTraining1st/master/week3/icon-mail.svg"
                 alt
               />
               <h2 class="main-sec">ring@business.com</h2>
@@ -72,7 +72,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name:'Footer'
+};
 </script>
 
 <style>

@@ -13,6 +13,7 @@
 <script>
 import AdminNav from "./AdminNav";
 export default {
+  name: 'TitleCarousel',
   components: {
     AdminNav
   },
