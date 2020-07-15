@@ -308,15 +308,6 @@ export default {
             $(`#${item.dropid}`).slideUp("slow");
           }
         }
-        // if (e == item.special) {
-        //   if (item.kind == false) {
-        //     item.kind = true;
-        //   } else {
-        //     item.kind = false;
-        //   }
-        // } else if (e !== item.special && e !== item.zoe) {
-        //   item.kind = false;
-        // }
       });
     },
     HoverShow(e) {

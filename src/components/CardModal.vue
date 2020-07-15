@@ -72,7 +72,6 @@ export default {
         $("#productModal").modal("hide");
         vm.cartdisable = "";
         vm.counts = 1;
-        console.log(vm.cartdisable);
       });
     }
   }

@@ -19,7 +19,6 @@ export default {
           context.commit('CARTITEM', '');
         }
       });
-
     },
     addtoCart(context, { id, qty = 1 }) {
       const api = `${process.env.VUE_APP_APIPATH}api/${process.env.VUE_APP_COSTOM}/cart`;
@@ -31,9 +30,9 @@ export default {
       };
       return new Promise((resolve) => {
         axios.post(api, { data: cart }).then((response) => {
-          console.log(api)
           context.commit('ISLOADING', false, { root: true });
           if (response.data.success) {
+            console.log(response.data)
             context.dispatch('getCart');
             resolve();
           }
@@ -75,6 +74,7 @@ export default {
     },
     CARTITEM(state, payload) {
       state.cartItem = payload;
+      console.log(state.cartItem)
     },
   },
   getters: {
