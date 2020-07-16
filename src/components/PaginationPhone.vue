@@ -9,7 +9,7 @@
       aria-expanded="false"
     >頁面</button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" v-for=" page in pages.total_pages" :pages="page" :key="page" :class="{active : pages.current_page === page}" @click.prevent="getPages(page)" href="#">{{ page }}</a>
+      <a class="dropdown-item" v-for=" page in pages.total_pages" :pages="page" :key="page" :class="{ active : pages.current_page === page }" @click.prevent="getPages(page)" href="#">{{ page }}</a>
     </div>
   </nav>
 </template>

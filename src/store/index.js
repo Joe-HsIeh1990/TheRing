@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import ProductsModules from './ProductsModules';
-import AdminMemberModules from './AdminMemberModules';
-import CardModules from './CardModules';
-import HomeModules from './HomeModules';
-import AlertModules from './AlertModules';
-import OrderModules from './OrderModules';
+import productsmodules from './productsmodules';
+import adminmembermodules from './adminmembermodules';
+import cardmodules from './cardmodules';
+import homemodules from './homemodules';
+import alertmodules from './alertmodules';
+import ordermodules from './ordermodules';
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -25,12 +25,12 @@ export default new Vuex.Store({
     isLoading: state => state.isLoading,
   },
   modules: {
-    ProductsModules,
-    AdminMemberModules,
-    CardModules,
-    HomeModules,
-    AlertModules,
-    OrderModules
+    productsmodules,
+    adminmembermodules,
+    cardmodules,
+    homemodules,
+    alertmodules,
+    ordermodules
 
   }
 })

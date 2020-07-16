@@ -70,16 +70,11 @@
 .commodity {
   height: 100%;
   &-title {
-    @include boxshadow;
     background-color: #000000;
     h5 {
       color: $color-first;
     }
   }
-  &-content{
-    @include boxshadow;
-  }
- 
 }
 .card {
   @include boxshadow;

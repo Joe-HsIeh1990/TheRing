@@ -151,18 +151,18 @@ export default {
   methods: {
     payOrder() {
       const vm = this;
-      this.$store.dispatch("OrderModules/payOrder", this.orderId).then(() => {
+      vm.$store.dispatch("ordermodules/payOrder", this.orderId).then(() => {
         vm.leave = true;
       });
     }
   },
   computed: {
     ...mapGetters(["isLoading"]),
-    ...mapGetters("OrderModules", ["order"])
+    ...mapGetters("ordermodules", ["order"])
   },
   created() {
     this.orderId = this.$route.params.orderId;
-    this.$store.dispatch("OrderModules/getOrder", this.orderId);
+    this.$store.dispatch("ordermodules/getOrder", this.orderId);
   },
   beforeRouteLeave(to, from, next) {
     const vm = this;

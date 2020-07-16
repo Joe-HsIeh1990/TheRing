@@ -9,17 +9,17 @@
       </div>
       <div class="detail-cash col-md-5 detall-price">
         <div class="p-3">
-          <h2 class="font-weight-bold mb-2">{{currentProduct.title}}</h2>
+          <h2 class="font-weight-bold mb-2">{{ currentProduct.title }}</h2>
           <div class="mb-3">
-            <del>原價 {{currentProduct.origin_price | currency}}</del>
-            <h4 class="mt-2 text-danger font-weight-bold">特價 {{currentProduct.price | currency}}</h4>
+            <del>原價 {{ currentProduct.origin_price | currency }}</del>
+            <h4 class="mt-2 text-danger font-weight-bold">特價 {{ currentProduct.price | currency }}</h4>
           </div>
           <select class="form-control mb-3" v-model="counts">
             <option :value="num" v-for="num in 10" :key="num">選購 {{num}} 隻</option>
           </select>
           <p
             class="text-right text-main font-weight-bold mb-1"
-          >小計 {{counts * currentProduct.price | currency}}</p>
+          >小計 {{ counts * currentProduct.price | currency }}</p>
           <a
             class="btn btn-info btn-block text-white"
             @click="addtoCart(currentProduct.id,counts)"
@@ -74,12 +74,12 @@ export default {
   methods: {
     addtoCart(id, qty = 1) {
       const vm = this;
-      this.$store.dispatch("CardModules/addtoCart", { id, qty }).then(() => {
+      vm.$store.dispatch("cardmodules/addtoCart", { id, qty }).then(() => {
         vm.counts = 1;
       });
     },
-    ...mapActions("ProductsModules", ["getCurrentPageProduct"]),
-    ...mapActions("HomeModules", ["CarouselProducts"])
+    ...mapActions("productsmodules", ["getCurrentPageProduct"]),
+    ...mapActions("homemodules", ["CarouselProducts"])
   },
   computed: {
     filterscarousel() {
@@ -93,12 +93,12 @@ export default {
       return newarr;
     },
     ...mapGetters(["isLoading"]),
-    ...mapGetters("ProductsModules", ["currentProduct"]),
-    ...mapGetters("HomeModules", ["carouselproducts"])
+    ...mapGetters("productsmodules", ["currentProduct"]),
+    ...mapGetters("homemodules", ["carouselproducts"])
   },
   created() {
     this.$store
-      .dispatch("ProductsModules/getCurrentPageProduct", this.$route.params.id)
+      .dispatch("productsmodules/getCurrentPageProduct", this.$route.params.id)
       .then(() => {
         this.currentPageProduct = Object.assign({}, this.currentProduct);
       });

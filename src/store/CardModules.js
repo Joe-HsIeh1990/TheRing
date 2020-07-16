@@ -32,7 +32,6 @@ export default {
         axios.post(api, { data: cart }).then((response) => {
           context.commit('ISLOADING', false, { root: true });
           if (response.data.success) {
-            console.log(response.data)
             context.dispatch('getCart');
             resolve();
           }
@@ -74,7 +73,6 @@ export default {
     },
     CARTITEM(state, payload) {
       state.cartItem = payload;
-      console.log(state.cartItem)
     },
   },
   getters: {

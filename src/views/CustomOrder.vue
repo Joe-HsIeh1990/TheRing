@@ -27,7 +27,7 @@
                   :key="items.id"
                 >
                   <div class="d-flex flex-column mt-1">
-                    <h5 class="mb-0">{{items.product.title}}</h5>
+                    <h5 class="mb-0">{{ items.product.title }}</h5>
                     <span>{{ items.qty }} 隻</span>
                   </div>
                   <span class="ml-auto order-item-price">{{ items.total | currency }}</span>
@@ -107,7 +107,7 @@
                   <ValidationProvider
                     name="手機號碼"
                     rules="required|phone"
-                    v-slot="{ errors , classes}"
+                    v-slot="{ errors , classes }"
                   >
                     <div :class=" classes">
                       <input
@@ -200,7 +200,7 @@ export default {
     createOrder() {
       const vm = this;
       const order = vm.form;
-      this.$store.dispatch("OrderModules/createOrder", order).then(() => {
+      vm.$store.dispatch("ordermodules/createOrder", order).then(() => {
         vm.leave = true;
       });
     },
@@ -210,10 +210,10 @@ export default {
   },
   computed: {
     ...mapGetters(["isLoading"]),
-    ...mapGetters("CardModules", ["cart"])
+    ...mapGetters("cardmodules", ["cart"])
   },
   created() {
-    this.$store.dispatch("CardModules/getCart");
+    this.$store.dispatch("cardmodules/getCart");
   },
   beforeRouteLeave(to, from, next) {
     const vm = this;

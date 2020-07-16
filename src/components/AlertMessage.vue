@@ -1,10 +1,18 @@
 <template>
   <div class="message-alert">
-    <div class="alert alert-dismissible"
+    <div
+      class="alert alert-dismissible"
       :class="'alert-' + item.status"
-      v-for="(item, i) in messages" :key="i">
+      v-for="(item , i) in messages"
+      :key="i"
+    >
       {{ item.message }}
-      <button type="button" class="close" @click="REMOVEMESSAGE(i)" aria-label="Close">
+      <button
+        type="button"
+        class="close"
+        @click="REMOVEMESSAGE(i)"
+        aria-label="Close"
+      >
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -12,15 +20,15 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from "vuex";
 export default {
-  name: 'AlertMessage',
+  name: "AlertMessage",
   methods: {
-    ...mapMutations('AlertModules', ['REMOVEMESSAGE']), 
+    ...mapMutations("alertmodules", ["REMOVEMESSAGE"])
   },
   computed: {
-    ...mapGetters('AlertModules', ['messages']),
-  },
+    ...mapGetters("alertmodules", ["messages"])
+  }
 };
 </script>
 
@@ -31,9 +39,9 @@ export default {
   top: 60px;
   right: 20px;
   z-index: 1100;
-  .close{
+  .close {
     outline: 0;
-    &:focus{
+    &:focus {
       outline: 0;
     }
   }

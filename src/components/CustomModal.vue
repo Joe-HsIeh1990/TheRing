@@ -34,7 +34,7 @@
               type="button"
               class="modal-btn btn-dark px-4"
               @click="addtoCart(thisProduct.id)"
-              :class="{disabled:thisProduct.id === cartdisable}"
+              :class="{ disabled:thisProduct.id === cartdisable }"
             >
               立即購買
             </button>
@@ -65,7 +65,7 @@ export default {
     addtoCart(id, qty) {
       const vm = this;
       vm.cartdisable = id;
-      this.$store.dispatch("CardModules/addtoCart", { id, qty }).then(() => {
+      vm.$store.dispatch("cardmodules/addtoCart", { id, qty }).then(() => {
         $("#productModal").modal("hide");
       });
     }

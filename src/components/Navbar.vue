@@ -13,19 +13,25 @@
       <div class="d-flex">
         <div class="nav-cart pt-3 pr-3">
           <div class="cart">
-            <button type="button" class="dropdown-toggle cart-check" data-toggle="dropdown">
+            <button
+              type="button"
+              class="dropdown-toggle cart-check"
+              data-toggle="dropdown"
+              :data-display="cartline"
+              @click="cartdrop"
+            >
               <font-awesome-icon icon="cart-plus" size="lg" />
-              <span class="cart-num text-center text-white" v-if="cartlength > 0">{{cartlength}}</span>
+              <span class="cart-num text-center text-white">{{ cartlength }}</span>
             </button>
             <div class="dropdown-menu p-2">
               <h6 class="p-2">已加入購物車</h6>
               <table class="table mb-2">
                 <tbody>
-                  <tr class="text-nowrap" v-if="cartlength == 0">
+                  <!-- <tr class="text-nowrap" v-if="cartlength === 0">
                     <td class="p-0">
                       <a href="#" class="btn btn-info btn-block">目前沒有商品加入!</a>
                     </td>
-                  </tr>
+                  </tr>-->
                   <tr v-for="item in cart.carts" :key="item.id">
                     <td class="px-2">
                       <img :src="item.product.imageUrl" width="30" />
@@ -58,9 +64,9 @@
             <a href="#" class="font-weight-bold">首頁</a>
           </li>
         </router-link>
-          <li class="nav-list mr-md-5 mr-0 py-3 py-md-0 pl-3 pl-md-0" @click.prevent="GoProduct">
-            <a href="#" class="font-weight-bold">商品</a>
-          </li>
+        <li class="nav-list mr-md-5 mr-0 py-3 py-md-0 pl-3 pl-md-0" @click.prevent="GoProduct">
+          <a href="#" class="font-weight-bold">商品</a>
+        </li>
         <router-link to="/custom/login" class="text-decoration-none">
           <li class="nav-list mr-md-5 mr-0 py-3 py-md-0 pl-3 pl-md-0">
             <a href="#" class="font-weight-bold">
@@ -70,21 +76,21 @@
         </router-link>
         <li class="nav-list-cart">
           <div class="cart">
-            <button type="button" class="dropdown-toggle cart-check" data-toggle="dropdown">
+            <button type="button" class="dropdown-toggle cart-check" :data-toggle="cartline"   @click="cartdrop">
               <font-awesome-icon icon="cart-plus" size="lg" />
-              <span class="cart-num text-center text-white" v-if="cartlength > 0">{{cartlength}}</span>
+              <span class="cart-num text-center text-white" v-if="cartlength > 0">{{ cartlength }}</span>
             </button>
             <div class="dropdown-menu p-2">
               <h6 class="p-2">已加入購物車</h6>
               <table class="table mb-2">
                 <tbody>
-                  <tr class="text-nowrap" v-if="cartlength == 0">
+                  <!-- <tr class="text-nowrap" v-if="cartlength === 0">
                     <td class="p-0">
                       <router-link to="/custom/products">
                         <a href="#" class="btn btn-info btn-block">目前沒有商品加入!</a>
                       </router-link>
                     </td>
-                  </tr>
+                  </tr> -->
                   <tr v-for="item in cart.carts" :key="item.id">
                     <td class="px-2">
                       <img :src="item.product.imageUrl" width="30" />
@@ -93,7 +99,7 @@
                     <td class="text-nowrap px-2 align-middle">{{ item.qty }} 隻</td>
                     <td
                       class="text-right text-nowrap px-2 align-middle mincart-total"
-                    >{{item.total | currency}}</td>
+                    >{{ item.total | currency }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -111,23 +117,38 @@
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
+import "popper.js";
 import $ from "jquery";
 export default {
   name: "Navbar",
   data() {
     return {
       ham: false,
-      NavContent: true
+      NavContent: true,
+      cartline: "dropdown"
     };
   },
   methods: {
+    cartdrop() {
+      let vm = this;
+      if (vm.cartlength === 0) {
+        vm.cartline = "static";
+        console.log(vm.$router.currentRoute.path)
+        if(vm.$router.currentRoute.path === '/custom/products'){
+          vm.$store.dispatch('alertmodules/updateMessage', { message: '看看有沒有喜歡的，下單後就能進購物車了', status: 'info' });
+        }
+        
+      } else {
+        vm.cartline = "dropdown";
+      }
+    },
     hamburger() {
       let vm = this;
-      if (vm.ham == false) {
+      if (vm.ham === false) {
         $(".nav-content").slideDown("slow");
-        this.ham = true;
+        vm.ham = true;
       } else {
-        this.ham = false;
+        vm.ham = false;
         $(".nav-content").slideUp("slow");
       }
     },
@@ -137,10 +158,10 @@ export default {
     GoCustomerCart() {
       this.$router.push("/custom/customcart");
     },
-    ...mapActions("CardModules", ["getCart"])
+    ...mapActions("cardmodules", ["getCart"])
   },
   computed: {
-    ...mapGetters("CardModules", ["cart", "cartlength"])
+    ...mapGetters("cardmodules", ["cart", "cartlength"])
   },
   mounted() {
     this.getCart();

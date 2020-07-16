@@ -23,6 +23,9 @@
 </template>
 <script>
 export default {
-  name: 'CheckModal'
+  name: "CheckModal",
+  data() {
+    return {};
+  }
 };
 </script>

@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, key) in sortOrder" :key="key" :class="{'text-secondary': !item.is_paid}">
+        <tr v-for="(item, key) in sortOrder" :key="key" :class="{ 'text-secondary': !item.is_paid }">
           <td>{{ item.create_at | timecurrency }}</td>
           <td>
             <span v-text="item.user.email" v-if="item.user"></span>

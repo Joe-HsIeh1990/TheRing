@@ -1,25 +1,21 @@
 <template>
   <div class="products">
+    <Alert />
     <loading :active.sync="isLoading"></loading>
     <header class="custom d-flex">
       <div class="m-auto text-white">
         <h1>Shop Store</h1>
       </div>
     </header>
-    <div class="Introduction container-fluid">
+    <div class="Introduction container-fluid mt-2">
       <ul class="Introduction-container list-unstyled row justify-content-between mb-0">
         <li class="col-12 col-md-4 col-lg-3">
           <div class="drop">
-            <div class="drop-container" :class="{'active' : Btn_active}" @click.stop="dropmenu()">
-              <h5 class="drop-title p-3 text-center">
-                <span class="drop-plus" :class="{'active' : plus_icon}"></span>商品類型
-              </h5>
-            </div>
             <ul class="Introduction-list list-unstyled">
               <li
                 class="Introduction-item border"
                 v-for="boxitem in menu"
-                :class="{ 'active' : boxitem.style , 'activeall' : boxitem.kind}"
+                :class="{ 'active' : boxitem.style , 'activeall' : boxitem.kind }"
                 :key="boxitem.zoe"
                 @click.stop="dropitem(boxitem.zoe) ;  boxitem.took && currentcontext(boxitem.special)"
               >
@@ -49,9 +45,6 @@
           </div>
         </li>
         <li class="commodity d-flex flex-column col-12 col-md-8 col-lg-9 mt-2 mt-md-0">
-          <div class="commodity-title text-center">
-            <h5 class="py-3">商品列表</h5>
-          </div>
           <ul
             class="commodity-content col-12 mx-auto row list-unstyled px-0 align-items-center border pt-2"
           >
@@ -119,18 +112,19 @@ import { mapGetters, mapActions } from "vuex";
 import PaginationPhone from "../components/PaginationPhone";
 import Pagination from "../components/Pagination";
 import CardModal from "../components/CardModal";
+import Alert from "../components/AlertMessage";
 import $ from "jquery";
 export default {
   components: {
     Pagination,
     CardModal,
-    PaginationPhone
+    PaginationPhone,
+    Alert
   },
   data() {
     return {
       hover_btn: true,
       plus_icon: false,
-      Btn_active: false,
       Btn_rwd: false,
       phoneCard: false,
       menu: [
@@ -252,7 +246,7 @@ export default {
   },
   methods: {
     getCurrentProduct(id) {
-      this.$store.dispatch("ProductsModules/getCurrentProduct", id).then(() => {
+      this.$store.dispatch("productsmodules/getCurrentProduct", id).then(() => {
         $("#productModal").modal("show");
       });
     },
@@ -260,9 +254,9 @@ export default {
       this.$router.push(`/custom/detail/${id}`);
     },
     currentcontext(e) {
-      this.$store.commit("ProductsModules/CURRENTCONTEXT", e);
-      this.GetProducts();
       let vm = this;
+      vm.$store.commit("productsmodules/CURRENTCONTEXT", e);
+      vm.GetProducts();
       vm.menu.forEach(item => {
         if (e == item.special) {
           if (item.kind == false) {
@@ -284,18 +278,6 @@ export default {
         }
       });
     },
-    dropmenu() {
-      let vm = this;
-      if (vm.Btn_active == false) {
-        vm.Btn_active = true;
-        vm.plus_icon = true;
-        $(".Introduction-list").slideDown("slow");
-      } else {
-        vm.Btn_active = false;
-        vm.plus_icon = false;
-        $(".Introduction-list").slideUp("slow");
-      }
-    },
     dropitem(e) {
       let vm = this;
       vm.menu.forEach(item => {
@@ -312,23 +294,22 @@ export default {
     },
     HoverShow(e) {
       let take = e.target.dataset.num;
-      this.$store.commit("ProductsModules/HOVERLIST", take);
+      this.$store.commit("productsmodules/HOVERLIST", take);
     },
-    ...mapActions("ProductsModules", ["GetProducts"])
+    ...mapActions("productsmodules", ["GetProducts"])
   },
   computed: {
     ...mapGetters(["isLoading"]),
-    ...mapGetters("ProductsModules", [
+    ...mapGetters("productsmodules", [
       "products",
       "pagination",
       "temproduct",
       "contxt",
       "txt"
     ]),
-    ...mapGetters("ProductsModules", ["cartItem"])
+    ...mapGetters("cardmodules", ["cartItem"])
   },
   mounted() {
-    $(".Introduction-list").hide();
     $(".Introduction-content").hide();
     $(".card-hover").hide();
     let ALLid = document.getElementById("All");

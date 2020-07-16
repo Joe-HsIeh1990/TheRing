@@ -22,11 +22,11 @@
       <h4 class="text-center mb-4">感謝您的訂購，歡迎您再次光臨!</h4>
       <div class="mx-auto CompleteOrders mb-1">
         <span class="mr-2">訂單完成時間:</span>
-        <span class="info" v-if="order.id">{{order.paid_date | timecurrency}}</span>
+        <span class="info" v-if="order.id">{{ order.paid_date | timecurrency }}</span>
       </div>
       <div class="mx-auto CompleteOrder mb-1">
         <span class="mr-2">您的訂單編號:</span>
-        <span class="info" v-if="order.id">{{order.id}}</span>
+        <span class="info" v-if="order.id">{{ order.id }}</span>
       </div>
       <div class="mx-auto CompleteOrder mb-5">
         <span class="mr-2">您的訂單金額:</span>
@@ -52,10 +52,10 @@ export default {
     },
   },
   computed: {
-    ...mapGetters('OrderModules', ['order']),
+    ...mapGetters('ordermodules', ['order']),
   },
   created() {
-    this.$store.dispatch('OrderModules/getOrder', this.$route.params.orderId);
+    this.$store.dispatch('ordermodules/getOrder', this.$route.params.orderId);
   },
 };
 </script>

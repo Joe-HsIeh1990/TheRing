@@ -16,6 +16,9 @@ export default {
     components: {
         Navbar,
         Footer
+    },
+    data(){
+        return{}
     }
 
 }

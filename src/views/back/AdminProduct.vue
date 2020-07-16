@@ -18,10 +18,10 @@
       </thead>
       <tbody>
         <tr v-for="(item) in products" :key="item.id">
-          <td>{{item.category}}</td>
-          <td>{{item.title}}</td>
-          <td class="text-right">{{item.origin_price | currency}}</td>
-          <td class="text-right">{{item.price | currency}}</td>
+          <td>{{ item.category }}</td>
+          <td>{{ item.title }}</td>
+          <td class="text-right">{{ item.origin_price | currency }}</td>
+          <td class="text-right">{{ item.price | currency }}</td>
           <td>
             <span v-if="item.is_enabled" class="text-success">啟用</span>
             <span v-else>未啟用</span>
@@ -242,10 +242,10 @@ export default {
   },
   methods: {
     getProducts(page = 1) {
-      const api = `${process.env.VUE_APP_APIPATH}api/${process.env.VUE_APP_COSTOM}/products?page=${page}`;
       const vm = this;
+      const api = `${process.env.VUE_APP_APIPATH}api/${process.env.VUE_APP_COSTOM}/products?page=${page}`;
       vm.isLoading = true;
-      this.$http.get(api).then(response => {
+      vm.$http.get(api).then(response => {
         vm.isLoading = false;
         vm.products = response.data.products;
         vm.pagination = response.data.pagination;
@@ -268,27 +268,27 @@ export default {
       $("#delProductModal").modal("show");
     },
     deldataProduct() {
+      let vm = this;
       let api = `${process.env.VUE_APP_APIPATH}api/${process.env.VUE_APP_COSTOM}/admin/product/${this.tempProduct.id}`;
-      this.$http.delete(api).then(response => {
+      vm.$http.delete(api).then(response => {
         if (response.data.success) {
           $("#delProductModal").modal("hide");
-          this.getProducts();
+          vm.getProducts();
         } else {
           $("#delProductModal").modal("hide");
-          this.getProducts();
+          vm.getProducts();
         }
       });
     },
     updateProduct() {
       let api = `${process.env.VUE_APP_APIPATH}api/${process.env.VUE_APP_COSTOM}/admin/product`;
-      console.log(api)
       let httpMethod = "post";
       const vm = this;
       if (!vm.isNew) {
         api = `${process.env.VUE_APP_APIPATH}api/${process.env.VUE_APP_COSTOM}/admin/product/${vm.tempProduct.id}`;
         httpMethod = "put";
       }
-      this.$http[httpMethod](api, { data: vm.tempProduct }).then(response => {
+      vm.$http[httpMethod](api, { data: vm.tempProduct }).then(response => {
         if (response.data.success) {
           $("#productModal").modal("hide");
           vm.getProducts();
@@ -305,7 +305,7 @@ export default {
       formData.append("file-to-upload", uploadedFile);
       const url = `${process.env.VUE_APP_APIPATH}api/${process.env.VUE_APP_COSTOM}/admin/upload`;
       vm.status.fileUploading = true;
-      this.$http
+      vm.$http
         .post(url, formData, {
           headers: {
             "Content-Type": "multipart/form-data"
@@ -316,7 +316,7 @@ export default {
           if (response.data.success) {
             vm.$set(vm.tempProduct, "imageUrl", response.data.imageUrl);
           } else {
-            this.$bus.$emit("message:push", response.data.message, "danger");
+            vm.$bus.$emit("message:push", response.data.message, "danger");
           }
         });
     }

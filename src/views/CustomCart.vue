@@ -19,18 +19,18 @@
                 </div>
                 <div class="d-flex align-items-center ml-2 ml-sm-0">
                   <div>
-                    <h4 class="customerCart-list-title mb-3">{{item.product.title}}</h4>
+                    <h4 class="customerCart-list-title mb-3">{{ item.product.title }}</h4>
                     <div class="customerCart-list-info d-flex">
                       <span
                         class="price mr-3"
-                      >{{item.product.price | currency}}&nbsp;x&nbsp;{{ item.qty }}&nbsp; 隻</span>
+                      >{{ item.product.price | currency }}&nbsp;x&nbsp;{{ item.qty }}&nbsp; 隻</span>
                     </div>
                   </div>
                 </div>
                 <div class="ml-auto pr-2 delete align-self-center">
                   <a
                     class="btn btn-danger text-white"
-                    :class="{disabled:item.id === cartdisable}"
+                    :class="{ disabled:item.id === cartdisable }"
                     @click="deleteCart(item.id)"
                   >刪除</a>
                 </div>
@@ -50,7 +50,7 @@
                   :key="items.id"
                 >
                   <div class="d-flex flex-column mt-1">
-                    <h5 class="mb-0 h6">{{items.product.title}}</h5>
+                    <h5 class="mb-0 h6">{{ items.product.title }}</h5>
                     <span>{{ items.qty }}隻</span>
                   </div>
                   <span class="ml-auto order-item-price">{{ items.total | currency }}</span>
@@ -111,13 +111,13 @@ export default {
     deleteCart(id) {
       const vm = this;
       vm.cartdisable = id;
-      vm.$store.dispatch("CardModules/deleteCart", id);
+      vm.$store.dispatch("cardmodules/deleteCart", id);
     },
     addCouponCode() {
       const vm = this;
       if (vm.coupon_num !== "") {
         vm.$store
-          .dispatch("CardModules/addCouponCode", vm.coupon_num)
+          .dispatch("cardmodules/addCouponCode", vm.coupon_num)
           .then(() => {
             vm.coupon_num = "";
           });
@@ -126,8 +126,8 @@ export default {
     GoOrder() {
       this.$router.push("/custom/customorder");
     },
-    ...mapActions("HomeModules", ["CarouselProducts"]),
-    ...mapActions("CardModules", ["getCart"])
+    ...mapActions("homemodules", ["CarouselProducts"]),
+    ...mapActions("cardmodules", ["getCart"])
   },
   computed: {
     filterscarousel() {
@@ -138,9 +138,9 @@ export default {
       );
       return newarr;
     },
-    ...mapGetters("HomeModules", ["carouselproducts"]),
+    ...mapGetters("homemodules", ["carouselproducts"]),
     ...mapGetters(["isLoading"]),
-    ...mapGetters("CardModules", ["cart", "cartItem"])
+    ...mapGetters("cardmodules", ["cart", "cartItem"])
   },
   created() {
     this.getCart();

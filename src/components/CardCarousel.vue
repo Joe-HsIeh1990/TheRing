@@ -2,7 +2,7 @@
   <div class="container mt-3">
     <swiper class="swiper-cont" :options="swiperOption">
       <swiper-slide class="swiper-card" v-for="item in filterscard" :key="item.id">
-        <div class="card" @click.prevent="ToProductsDetaill(item.id)">
+        <div class="card" @click.prevent="ToProductsDetaill( item.id )">
           <img :src="item.imageUrl" class="card-img-top img-fluid" alt />
           <div class="card-body border">
             <h5 class="card-title font-weight-bold">{{ item.title }}</h5>

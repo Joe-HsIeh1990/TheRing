@@ -19,7 +19,7 @@
           <td class="text-nowrap">{{item.title}}</td>
           <td class="text-nowrap">{{item.percent}}</td>
           <td class="text-nowrap">
-            <span :class="{'overdue mr-2': currentTime > item.due_date}">{{item.due_date | timecurrency}}</span>
+            <span :class="{ 'overdue mr-2': currentTime > item.due_date }">{{ item.due_date | timecurrency }}</span>
             <span v-if="currentTime > item.due_date">已失效</span>
           </td>
           <td class="text-nowrap">
@@ -142,23 +142,14 @@ export default {
       $('#CouponsModal').modal('show');
     },
     updateCoupons() {
+      const vm = this;
       let api = `${process.env.VUE_APP_APIPATH}api/${process.env.VUE_APP_COSTOM}/admin/coupon`;
       let httpmethods = 'post';
-      const vm = this;
       if (!vm.isNew) {
         api = `${process.env.VUE_APP_APIPATH}api/${process.env.VUE_APP_COSTOM}/admin/coupon/${vm.temCoupons.id}`;
-              console.log(api)
         httpmethods = 'put';
       }
-      // if (!vm.temCoupons.title || !vm.temCoupons.code || !vm.temCoupons.due_date || !vm.temCoupons.percent) {
-      //   vm.$bus.$emit('message:push', '優惠券不完整', 'danger');
-      //   return;
-      // }
-      // if (this.currentTime > vm.temCoupons.due_date) {
-      //   vm.$bus.$emit('message:push', '有效期限錯誤', 'danger');
-      //   return;
-      // }
-      this.$http[httpmethods](api, { data: vm.temCoupons }).then((response) => {
+      vm.$http[httpmethods](api, { data: vm.temCoupons }).then((response) => {
         if (response.data.success) {
           $('#CouponsModal').modal('hide');
           vm.getCoupons();
@@ -174,7 +165,7 @@ export default {
     deleteCoupons() {
       const vm = this;
       const api = `${process.env.VUE_APP_APIPATH}api/${process.env.VUE_APP_COSTOM}/admin/coupon/${vm.temCoupons.id}`;
-      this.$http.delete(api).then((response) => {
+      vm.$http.delete(api).then((response) => {
         if (response.data.success) {
           $('#deleteModal').modal('hide');
           vm.getCoupons();

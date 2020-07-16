@@ -59,7 +59,7 @@ export default {
   methods: {
     signin() {
       let vm = this;
-      vm.$store.dispatch("AdminMemberModules/signin", vm.user).then(() => {
+      vm.$store.dispatch("adminmembermodules/signin", vm.user).then(() => {
         vm.user.username = "";
         vm.user.password = "";
       });

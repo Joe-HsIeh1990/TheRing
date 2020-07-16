@@ -137,7 +137,7 @@ export default {
       });
       e.preventDefault();
     },
-    ...mapActions("HomeModules", ["CarouselProducts"])
+    ...mapActions("homemodules", ["CarouselProducts"])
   },
   computed: {
     filterscarousel() {
@@ -148,7 +148,7 @@ export default {
       );
       return newarr;
     },
-    ...mapGetters("HomeModules", ["carouselproducts"])
+    ...mapGetters("homemodules", ["carouselproducts"])
   },
   mounted() {
     $(window).scroll(function() {
