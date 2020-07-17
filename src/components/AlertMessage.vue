@@ -20,14 +20,47 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
 export default {
   name: "AlertMessage",
+  data() {
+    return {
+      messages: []
+    };
+  },
   methods: {
-    ...mapMutations("alertmodules", ["REMOVEMESSAGE"])
+    updateMessage(message, status) {
+      const timestamp = Math.floor(new Date() / 1000);
+      this.messages.push({
+        message,
+        status,
+        timestamp
+      });
+      this.removeMessageWithTiming(timestamp);
+    },
+    removeMessage(num) {
+      this.messages.splice(num, 1);
+    },
+    removeMessageWithTiming(timestamp) {
+      const vm = this;
+      setTimeout(() => {
+        vm.messages.forEach((item, i) => {
+          if (item.timestamp === timestamp) {
+            vm.messages.splice(i, 1);
+          }
+        });
+      }, 6000);
+    }
   },
   computed: {
-    ...mapGetters("alertmodules", ["messages"])
+    messagesback() {
+      return this.$store.state.messages;
+    }
+  },
+  created() {
+    const vm = this;
+    vm.$bus.$on("message:push", (message, status = "warning") => {
+      vm.updateMessage(message, status);
+    });
   }
 };
 </script>

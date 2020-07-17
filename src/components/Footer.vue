@@ -16,19 +16,19 @@
             </router-link>
           </ul>
           <div class="top-img d-flex">
-            <a href="#">
+            <a href="#" @click.prevent="notuse">
               <img
                 src="https://raw.githubusercontent.com/hexschool/webLayoutTraining1st/master/week3/icon-fb.svg"
                 alt
               />
             </a>
-            <a href="#">
+            <a href="#" @click.prevent="notuse">
               <img
                 src="https://raw.githubusercontent.com/hexschool/webLayoutTraining1st/master/week3/icon-ig.svg"
                 alt
               />
             </a>
-            <a href="#">
+            <a href="#" @click.prevent="notuse">
               <img
                 src="https://raw.githubusercontent.com/hexschool/webLayoutTraining1st/master/week3/icon-line.svg"
                 alt
@@ -76,6 +76,11 @@ export default {
   name:'Footer',
   data(){
     return{}
+  },
+  methods:{
+    notuse(){
+      this.$bus.$emit("message:push", "尚未實裝", "danger")
+    }
   }
 };
 </script>

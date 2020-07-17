@@ -5,7 +5,6 @@ import productsmodules from './productsmodules';
 import adminmembermodules from './adminmembermodules';
 import cardmodules from './cardmodules';
 import homemodules from './homemodules';
-import alertmodules from './alertmodules';
 import ordermodules from './ordermodules';
 Vue.use(Vuex)
 
@@ -29,7 +28,6 @@ export default new Vuex.Store({
     adminmembermodules,
     cardmodules,
     homemodules,
-    alertmodules,
     ordermodules
 
   }

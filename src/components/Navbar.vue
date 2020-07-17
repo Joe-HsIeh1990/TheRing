@@ -1,5 +1,6 @@
 <template >
   <nav class="nav shadow-sm py-md-0 px-0">
+    <Alert />
     <div
       class="nav-container d-flex px-0 flex-wrap justify-content-between align-content-center p-2"
     >
@@ -16,22 +17,16 @@
             <button
               type="button"
               class="dropdown-toggle cart-check"
-              data-toggle="dropdown"
-              :data-display="cartline"
+               :data-toggle="cartline"
               @click="cartdrop"
             >
               <font-awesome-icon icon="cart-plus" size="lg" />
-              <span class="cart-num text-center text-white">{{ cartlength }}</span>
+              <span class="cart-num text-center text-white" v-if="cartlength > 0">{{ cartlength }}</span>
             </button>
             <div class="dropdown-menu p-2">
               <h6 class="p-2">已加入購物車</h6>
               <table class="table mb-2">
                 <tbody>
-                  <!-- <tr class="text-nowrap" v-if="cartlength === 0">
-                    <td class="p-0">
-                      <a href="#" class="btn btn-info btn-block">目前沒有商品加入!</a>
-                    </td>
-                  </tr>-->
                   <tr v-for="item in cart.carts" :key="item.id">
                     <td class="px-2">
                       <img :src="item.product.imageUrl" width="30" />
@@ -76,7 +71,12 @@
         </router-link>
         <li class="nav-list-cart">
           <div class="cart">
-            <button type="button" class="dropdown-toggle cart-check" :data-toggle="cartline"   @click="cartdrop">
+            <button
+              type="button"
+              class="dropdown-toggle cart-check"
+              :data-toggle="cartline"
+              @click="cartdrop"
+            >
               <font-awesome-icon icon="cart-plus" size="lg" />
               <span class="cart-num text-center text-white" v-if="cartlength > 0">{{ cartlength }}</span>
             </button>
@@ -84,13 +84,6 @@
               <h6 class="p-2">已加入購物車</h6>
               <table class="table mb-2">
                 <tbody>
-                  <!-- <tr class="text-nowrap" v-if="cartlength === 0">
-                    <td class="p-0">
-                      <router-link to="/custom/products">
-                        <a href="#" class="btn btn-info btn-block">目前沒有商品加入!</a>
-                      </router-link>
-                    </td>
-                  </tr> -->
                   <tr v-for="item in cart.carts" :key="item.id">
                     <td class="px-2">
                       <img :src="item.product.imageUrl" width="30" />
@@ -117,14 +110,16 @@
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
-import "popper.js";
+import Alert from "../components/AlertMessage";
 import $ from "jquery";
 export default {
+  components: {
+    Alert
+  },
   name: "Navbar",
   data() {
     return {
       ham: false,
-      NavContent: true,
       cartline: "dropdown"
     };
   },
@@ -132,12 +127,23 @@ export default {
     cartdrop() {
       let vm = this;
       if (vm.cartlength === 0) {
-        vm.cartline = "static";
-        console.log(vm.$router.currentRoute.path)
-        if(vm.$router.currentRoute.path === '/custom/products'){
-          vm.$store.dispatch('alertmodules/updateMessage', { message: '看看有沒有喜歡的，下單後就能進購物車了', status: 'info' });
+        vm.cartline = "none";
+        if (vm.$router.currentRoute.path === "/custom/products") {
+          vm.$bus.$emit(
+            "message:push",
+            "您已經在產品頁面，請添加購物車內容",
+            "danger"
+          );
+        } else {
+          vm.$bus.$emit(
+            "message:push",
+            "請添加購物車內容，4秒後將將協助您進入產品頁面",
+            "danger"
+          );
+          setTimeout(() => {
+            vm.$router.push("/custom/products");
+          }, 4000);
         }
-        
       } else {
         vm.cartline = "dropdown";
       }

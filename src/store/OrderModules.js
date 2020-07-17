@@ -42,7 +42,6 @@ export default {
           context.commit('ISLOADING', false, { root: true });
           if (response.data.success) {
             resolve();
-            context.dispatch('AlertModules/updateMessage', { message: '付款完成', status: 'success' }, { root: true });
             context.dispatch('CardModules/getCart', null, { root: true });
             setTimeout(() => {
             router.replace(`/custom/customcomplete/${id}`);},200)

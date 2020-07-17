@@ -76,7 +76,7 @@
                         name="姓名"
                         id="username"
                         v-model="form.user.name"
-                        placeholder="輸入姓名"
+                        placeholder="輸入姓名 必填!!"
                       />
                       <span class="text-danger">{{ errors[0] }}</span>
                     </div>
@@ -96,7 +96,7 @@
                         name="Email"
                         id="useremail"
                         v-model="form.user.email"
-                        placeholder="請輸入 Email"
+                        placeholder="請輸入 Email 必填!!"
                       />
                       <span class="text-danger">{{ errors[0] }}</span>
                     </div>
@@ -116,7 +116,7 @@
                         id="usertel"
                         name="tel"
                         v-model="form.user.tel"
-                        placeholder="請輸入電話"
+                        placeholder="請輸入電話 必填!!"
                       />
                       <span class="text-danger">{{ errors[0] }}</span>
                     </div>
@@ -136,7 +136,7 @@
                         name="地址"
                         id="useraddress"
                         v-model="form.user.address"
-                        placeholder="請輸入地址"
+                        placeholder="請輸入地址 必填!!"
                       />
                       <span class="text-danger">{{ errors[0] }}</span>
                     </div>

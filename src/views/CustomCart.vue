@@ -144,6 +144,6 @@ export default {
   },
   created() {
     this.getCart();
-  },
+  }
 };
 </script>

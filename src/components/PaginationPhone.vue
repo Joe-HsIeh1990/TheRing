@@ -1,7 +1,7 @@
 <template>
   <nav class="dropdown">
     <button
-      class="btn btn-secondary dropdown-toggle"
+      class="btn bg-black dropdown-toggle text-white"
       type="button"
       id="dropdownMenuButton"
       data-toggle="dropdown"
@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     getPages(page) {
-      this.$store.dispatch("ProductsModules/GetProducts", page);
+      this.$store.dispatch("productsmodules/GetProducts", page);
     }
   }
 };

@@ -2,7 +2,7 @@
   <div class="container detail">
     <loading :active.sync="isLoading"></loading>
     <div class="row align-items-center mb-3" v-if="currentProduct.id">
-      <div class="col-md-7 px-0">
+      <div class="col-md-7 mt-3 px-0">
         <div>
           <img :src="currentProduct.imageUrl" class="detail-img" alt />
         </div>

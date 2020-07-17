@@ -15,7 +15,7 @@ export default {
     name: 'Dashboard',
     components: {
         Navbar,
-        Footer
+        Footer,
     },
     data(){
         return{}

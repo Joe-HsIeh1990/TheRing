@@ -49,7 +49,7 @@
         </div>
       </div>
     </div>
-    <div class="new new-container2 py-4 px-0 " id="ring">
+    <div class="new new-container2 py-4 px-0" id="ring">
       <div class="new-content d-flex flex-wrap flex-row-reverse">
         <div class="col-md-6 col-12 new-photo2 new-list px-0"></div>
         <div
@@ -97,6 +97,7 @@
 import { mapGetters, mapActions } from "vuex";
 import "animate.css/animate.min.css";
 import $ from "jquery";
+import Check from "../components/CheckModal";
 import CardCarousel from "../components/CardCarousel";
 import TitleCarousel from "../components/TitleCarousel";
 import Navbar from "../components/Navbar";
