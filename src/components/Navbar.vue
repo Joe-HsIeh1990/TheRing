@@ -17,7 +17,7 @@
             <button
               type="button"
               class="dropdown-toggle cart-check"
-               :data-toggle="cartline"
+              :data-toggle="cartline"
               @click="cartdrop"
             >
               <font-awesome-icon icon="cart-plus" size="lg" />
@@ -120,7 +120,8 @@ export default {
   data() {
     return {
       ham: false,
-      cartline: "dropdown"
+      cartline: "dropdown",
+      time: 4
     };
   },
   methods: {
@@ -137,7 +138,7 @@ export default {
         } else {
           vm.$bus.$emit(
             "message:push",
-            "請添加購物車內容，4秒後將將協助您進入產品頁面",
+            `請添加購物車內容，4秒後將將協助您進入產品頁面`,
             "danger"
           );
           setTimeout(() => {
@@ -181,6 +182,9 @@ export default {
       $(".nav-content").hide();
     }
   }
+  // beforeDestroy() {
+  //   clearInterval(this.timer);
+  // }
 };
 </script>
 <style lang="scss" scoped>
