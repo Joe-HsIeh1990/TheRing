@@ -48,7 +48,7 @@
             </div>
           </div>
         </div>
-        <div class="hamburger" :class="{'hamburger-x' : ham}" @click="hamburger">
+        <div class="hamburger" :class="{ 'hamburger-x' : ham }" @click="hamburger">
           <span></span>
         </div>
       </div>
