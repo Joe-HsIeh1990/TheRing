@@ -10,7 +10,7 @@
       <button
         type="button"
         class="close"
-        @click="REMOVEMESSAGE(i)"
+        @click="removeMessage(i)"
         aria-label="Close"
       >
         <span aria-hidden="true">&times;</span>
