@@ -97,7 +97,6 @@
 import { mapGetters, mapActions } from "vuex";
 import "animate.css/animate.min.css";
 import $ from "jquery";
-import Check from "../components/CheckModal";
 import CardCarousel from "../components/CardCarousel";
 import TitleCarousel from "../components/TitleCarousel";
 import Navbar from "../components/Navbar";
