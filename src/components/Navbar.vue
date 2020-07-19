@@ -132,7 +132,7 @@ export default {
         if (vm.$router.currentRoute.path === "/custom/products") {
           vm.$bus.$emit(
             "message:push",
-            "您已經在產品頁面，請添加購物車內容",
+            "您已經在產品頁面，請添加商品內容",
             "danger"
           );
         } else {

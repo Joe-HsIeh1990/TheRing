@@ -12,17 +12,17 @@
       <div class="row" v-if="cart.total">
         <div class="col-lg-7">
           <ul class="list-unstyled customerCart-content">
-            <li class="mb-1" v-for="item in cart.carts" :key="item.id">
+            <li class="mb-2 border" v-for="item in cart.carts" :key="item.id">
               <div class="customerCart-list d-flex flex-row">
                 <div class="customerCart-img">
                   <img :src="item.product.imageUrl" class="img-fluid" />
                 </div>
-                <div class="d-flex align-items-center ml-2 ml-sm-0">
+                <div class="d-flex align-items-center ml-sm-0">
                   <div>
-                    <h4 class="customerCart-list-title mb-3">{{ item.product.title }}</h4>
+                    <h4 class="customerCart-list-title pl-3 mb-3">{{ item.product.title }}</h4>
                     <div class="customerCart-list-info d-flex">
                       <span
-                        class="price mr-3"
+                        class="price pl-3 mr-3"
                       >{{ item.product.price | currency }}&nbsp;x&nbsp;{{ item.qty }}&nbsp; 隻</span>
                     </div>
                   </div>

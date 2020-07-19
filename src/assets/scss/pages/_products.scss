@@ -8,7 +8,7 @@
 }
 .Introduction {
   &-item {
-    background-color: $color-first;
+    // background-color: $color-first;
     &-title {
       position: relative;
       cursor: pointer;
@@ -17,18 +17,18 @@
     &.activeall {
       background-color: #000000;
       .Introduction-item-title {
-        color: $color-first;
+        color: #ffc107;
       }
     }
     &.active {
       background-color: #000000;
       .Introduction-item-title {
-        color: $color-first;
+        color: #ffc107;
       }
     }
   }
   &-plus {
-    @include plus($color-four, $color-first);
+    @include plus(#000000, #ffc107);
   }
   &-content {
     background: #ffff;
@@ -83,9 +83,9 @@
       width: 30%;
       padding-top: 10%;
     }
-    @include minphone(){
-      img{
-        padding-top:25%;
+    @include minphone() {
+      img {
+        padding-top: 25%;
       }
     }
   }

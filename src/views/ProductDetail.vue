@@ -1,5 +1,5 @@
 <template>
-  <div class="container detail">
+  <div class="container">
     <loading :active.sync="isLoading"></loading>
     <div class="row align-items-center mb-3" v-if="currentProduct.id">
       <div class="col-md-7 mt-3 px-0">
@@ -21,7 +21,7 @@
             class="text-right text-main font-weight-bold mb-1"
           >小計 {{ counts * currentProduct.price | currency }}</p>
           <a
-            class="btn btn-info btn-block text-white"
+            class="btn btn-dark btn-block text-white"
             @click="addtoCart(currentProduct.id,counts)"
           >加入購物車</a>
         </div>

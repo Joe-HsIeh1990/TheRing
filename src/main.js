@@ -31,6 +31,9 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 // bootstrap
 import 'bootstrap';
 
+// hover
+import 'hover.css'; 
+
 // vee-validata 
 import { ValidationProvider, extend } from 'vee-validate';
 import { required, email } from 'vee-validate/dist/rules';

@@ -19,7 +19,7 @@ export default {
           context.commit('ISLOADING', false, { root: true });
           if (response.data.success) {
             resolve();
-            context.dispatch('CardModules/getCart', null, { root: true });
+            context.dispatch('cardmodules/getCart', null, { root: true });
             setTimeout(() => {
               router.push(`/custom/custompay/${response.data.orderId}`);
             },200)
@@ -42,7 +42,7 @@ export default {
           context.commit('ISLOADING', false, { root: true });
           if (response.data.success) {
             resolve();
-            context.dispatch('CardModules/getCart', null, { root: true });
+            context.dispatch('cardmodules/getCart', null, { root: true });
             setTimeout(() => {
             router.replace(`/custom/customcomplete/${id}`);},200)
 

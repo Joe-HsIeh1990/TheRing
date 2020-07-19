@@ -4,7 +4,7 @@
     <loading :active.sync="isLoading"></loading>
     <header class="custom d-flex">
       <div class="m-auto text-white">
-        <h1>Shop Store</h1>
+        <h1 class="text-white">Shop Store</h1>
       </div>
     </header>
     <div class="Introduction container-fluid mt-2">
@@ -13,7 +13,7 @@
           <div class="drop">
             <ul class="Introduction-list list-unstyled">
               <li
-                class="Introduction-item border"
+                class="Introduction-item "
                 v-for="boxitem in menu"
                 :class="{ 'active' : boxitem.style , 'activeall' : boxitem.kind }"
                 :key="boxitem.zoe"
@@ -29,7 +29,7 @@
                 </h5>
                 <ul class="Introduction-content list-unstyled" :id="boxitem.dropid">
                   <li
-                    class="Introduction-content-list border"
+                    class="Introduction-content-list"
                     :class="{'active': mind.kind}"
                     v-for="mind in boxitem.rol"
                     :key="mind.zoe"
@@ -46,49 +46,66 @@
         </li>
         <li class="commodity d-flex flex-column col-12 col-md-8 col-lg-9 mt-2 mt-md-0">
           <ul
-            class="commodity-content col-12 mx-auto row list-unstyled px-0 align-items-center border pt-2"
+            class="commodity-content col-12 mx-auto row list-unstyled px-0 align-items-center "
           >
-            <li class=" commodity-list col-12 col-md-6 col-lg-3 mb-3" v-for="item in products" :key="item.id">
-              <div class="card d-flex flex-row flex-md-column ">
-                <div class="card-img" @mousemove.stop="HoverShow">
-                  <img :src="item.imageUrl" class="card-img-top img-fluid" :data-num="item.id" alt />
-                  <div
-                    class="card-hover d-flex justify-content-around align-items-center"
-                    v-if="item.is_enabled"
-                    :data-num="item.id"
-                  >
-                    <a
-                      href="`#/custom/detail/${item.id}`"
-                      class="btn btn-outline-light"
-                      @click.prevent="ToProductsDetaill(item.id)"
+            <li
+              class="commodity-list col-12 col-md-6 col-lg-3 mb-3"
+              v-for="item in products"
+              :key="item.id"
+            >
+              <a
+                href="`#/custom/detail/${item.id}`"
+                @click.prevent="ToProductsDetaill(item.id)"
+                class="text-decoration-none "
+              >
+                <div class="card d-flex flex-row flex-md-column">
+                  <div class="card-img" @mousemove.stop="HoverShow">
+                    <img
+                      :src="item.imageUrl"
+                      class="card-img-top img-fluid"
                       :data-num="item.id"
-                    >more</a>
-                    <a
-                      href="#"
-                      class="btn btn-outline-light"
+                      alt
+                    />
+                    <div
+                      class="card-hover d-flex justify-content-around align-items-center"
+                      v-if="item.is_enabled"
                       :data-num="item.id"
-                      @click.prevent="getCurrentProduct(item.id)"
-                    >加入購物車</a>
+                    >
+                      <a
+                        href="`#/custom/detail/${item.id}`"
+                        class="btn btn-outline-warning"
+                        @click.prevent="ToProductsDetaill(item.id)"
+                        :data-num="item.id"
+                      >more</a>
+                      <a
+                        href="#"
+                        class="btn btn-outline-warning"
+                        :data-num="item.id"
+                        @click.stop="getCurrentProduct(item.id)"
+                      >加入購物車</a>
+                    </div>
+                  </div>
+                  <div class="card-body border">
+                    <h5 class="card-title font-weight-bold text-dark">{{ item.title }}</h5>
+                    <p class="card-text text-dark">{{ item.content }}</p>
+                    <div class="d-flex justify-content-between mt-2">
+                      <p class="text-danger font-weight-bold">特價{{ item.price }}!!</p>
+                    </div>
+                    <div class="card-text-btn mt-2">
+                      <a
+                        href="`#/custom/detail/${item.id}`"
+                        class="btn btn-info p-1 mr-2"
+                        @click.prevent="ToProductsDetaill(item.id)"
+                      >more</a>
+                      <a
+                        href="#"
+                        class="btn btn-primary p-1"
+                        @click.stop="getCurrentProduct(item.id)"
+                      >加入購物車</a>
+                    </div>
                   </div>
                 </div>
-                <div class="card-body border">
-                  <h5 class="card-title font-weight-bold">{{ item.title }}</h5>
-                  <p class="card-text">{{ item.content }}</p>
-                  <div class="d-flex justify-content-between mt-2">
-                    <del>原價{{ item.origin_price }}!!</del>
-                    <h3 class="h5 text-danger font-weight-bold">特價{{ item.price }}!!</h3>
-                  </div>
-
-                  <div class="card-text-btn mt-2">
-                    <a
-                      href="`#/custom/detail/${item.id}`"
-                      class="btn btn-info p-1 mr-2"
-                      @click.prevent="ToProductsDetaill(item.id)"
-                    >more</a>
-                    <a href="#" class="btn btn-primary p-1" @click.prevent="getCurrentProduct(item.id)">加入購物車</a>
-                  </div>
-                </div>
-              </div>
+              </a>
             </li>
           </ul>
           <PaginationPhone
