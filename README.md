@@ -1,6 +1,6 @@
 # The Ring (Vue Cli 3)
 
-![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/readhome.png) 
+![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/read/hometitle.png) 
 
 ## Demo
 https://joe-hsieh1990.github.io/TheRIng/#/
@@ -27,43 +27,39 @@ https://joe-hsieh1990.github.io/TheRIng/#/
 
 ## 前台介紹
 ### 首頁
-![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/readhome.png) 
-![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/readhome2.png) 
+![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/read/hometitle.png) 
+![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/read/hometitle1.png) 
 
 ### 商品列表
-![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/products.png) 
+![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/read/product1.png) 
 
 ### 商品內容
-![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/shopcotent1.png) 
-![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/shopcontent2.png) 
+![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/read/detail.png) 
 
 ### 購物車
-![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/cart1.png)
 優惠碼: 321
-![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/cart2.png) 
-### 空購物車狀態
-![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/cart3.png)
+![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/read/cart1.png)
 
 ### 訂單填寫
 #### 用正規表達式來限定輸入內容
-![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/order.png)
-![](https://github.com/Joe-HsIeh1990/TheRIng/blob/master/src/assets/images/order2.png)
+![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/read/cart2.png) 
+![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/read/cart3.png) 
 
 ### 結帳頁面
-![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/complete.png)
+![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/read/cart4.png) 
 
 ## 後台介紹
 ### 登入介面
-![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/login.png)
+![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/read/login.png)
 
 ### 新增、修改商品列表
-![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/adminproduct.png)
+![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/read/adminproduct.png)
 
 ### 已下定單
-![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/adminorder1.png)
+![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/read/adiminorder.png)
 
 ### 優惠劵
-![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/admincoupones.png)
+![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/read/admincouponse.png)
 
 
 
