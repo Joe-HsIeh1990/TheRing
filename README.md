@@ -28,8 +28,8 @@ https://joe-hsieh1990.github.io/TheRIng/#/
 ## 前台介紹
 ### 首頁
 ![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/read/hometitle.png) 
-![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/read/hometitle1.png) 
-
+![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/read/hometitle2.png) 
+2
 ### 商品列表
 ![](https://github.com/Joe-HsIeh1990/TheRing/blob/master/src/assets/images/read/product1.png) 
 
