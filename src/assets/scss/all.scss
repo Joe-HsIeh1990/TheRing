@@ -1,9 +1,7 @@
 // helper
-@import "./helper/myvariables";
 @import "~bootstrap/scss/functions";
 @import "./helper/_variables";
 @import "~bootstrap/scss/bootstrap";
-@import './helper/utilities';
 @import "./grid";
 @import "./base";
 // mixin
@@ -22,3 +20,4 @@
 @import "./pages/customcart";
 @import "./pages/custompay";
 @import "./pages/customcomplete";
+@import "./pages/productdetail";

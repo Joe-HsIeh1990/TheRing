@@ -1,6 +1,6 @@
 <template>
   <div>
-    <loading :active.sync="isLoading"></loading>
+    <loading :active.sync="isLoading" />
     <table class="table mt-4">
       <thead>
         <tr>
@@ -12,28 +12,50 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, key) in sortOrder" :key="key" :class="{ 'text-secondary': !item.is_paid }">
+        <tr
+          v-for="(item, key) in sortOrder"
+          :key="key"
+          :class="{ 'text-secondary': !item.is_paid }"
+        >
           <td>{{ item.create_at | timecurrency }}</td>
           <td>
-            <span v-text="item.user.email" v-if="item.user"></span>
+            <span
+              v-if="item.user"
+              v-text="item.user.email"
+            />
           </td>
           <td>
             <ul class="list-unstyled">
-              <li class="text-dark" v-for="(product, i) in item.products" :key="i">
+              <li
+                v-for="(product, i) in item.products"
+                :key="i"
+                class="text-dark"
+              >
                 {{ product.product.title }} 數量：{{ product.qty }}
                 隻
               </li>
             </ul>
           </td>
-          <td class="text-right">{{ item.total | currency }}</td>
+          <td class="text-right">
+            {{ item.total | currency }}
+          </td>
           <td>
-            <strong v-if="item.is_paid" class="text-success">已付款</strong>
-            <span v-else class="text-muted">尚未起用</span>
+            <strong
+              v-if="item.is_paid"
+              class="text-success"
+            >已付款</strong>
+            <span
+              v-else
+              class="text-muted"
+            >尚未起用</span>
           </td>
         </tr>
       </tbody>
     </table>
-    <Pagination :pages="pagination" @emitPages="getOrders" />
+    <Pagination
+      :pages="pagination"
+      @emitPages="getOrders"
+    />
   </div>
 </template>
 <script>
@@ -48,18 +70,6 @@ export default {
       isNew: false,
       pagination: {},
     };
-  },
-  methods: {
-    getOrders(currentPage = 1) {
-      const vm = this;
-      const url = `${process.env.VUE_APP_APIPATH}api/${process.env.VUE_APP_COSTOM}/admin/orders?page=${currentPage}`;
-      vm.isLoading = true;
-      vm.$http.get(url, vm.tempProduct).then(response => {
-        vm.orders = response.data.orders;
-        vm.pagination = response.data.pagination;
-        vm.isLoading = false;
-      });
-    }
   },
   computed: {
     sortOrder() {
@@ -77,6 +87,18 @@ export default {
   },
   created() {
     this.getOrders();
+  },
+  methods: {
+    getOrders(currentPage = 1) {
+      const vm = this;
+      const url = `${process.env.VUE_APP_APIPATH}api/${process.env.VUE_APP_COSTOM}/admin/orders?page=${currentPage}`;
+      vm.isLoading = true;
+      vm.$http.get(url, vm.tempProduct).then(response => {
+        vm.orders = response.data.orders;
+        vm.pagination = response.data.pagination;
+        vm.isLoading = false;
+      });
+    }
   }
 };
 </script>

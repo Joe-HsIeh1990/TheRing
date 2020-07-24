@@ -1,10 +1,12 @@
 <template>
   <div class="products">
     <Alert />
-    <loading :active.sync="isLoading"></loading>
+    <loading :active.sync="isLoading" />
     <header class="custom d-flex">
       <div class="m-auto text-white">
-        <h1 class="text-white">Shop Store</h1>
+        <h1 class="text-white">
+          Shop Store
+        </h1>
       </div>
     </header>
     <div class="Introduction container-fluid mt-2">
@@ -13,26 +15,32 @@
           <div class="drop">
             <ul class="Introduction-list list-unstyled">
               <li
-                class="Introduction-item "
                 v-for="boxitem in menu"
-                :class="{ 'active' : boxitem.style , 'activeall' : boxitem.kind }"
                 :key="boxitem.zoe"
-                @click.stop="dropitem(boxitem.zoe) ;  boxitem.took && currentcontext(boxitem.special)"
+                class="Introduction-item"
+                :class="{ 'active' : boxitem.style , 'activeall' : boxitem.kind }"
+                @click.stop="dropitem(boxitem.zoe) ; boxitem.took && currentcontext(boxitem.special)"
               >
-                <h5 class="Introduction-item-title p-3 text-center" :id="boxitem.name">
+                <h5
+                  :id="boxitem.name"
+                  class="Introduction-item-title p-3 text-center"
+                >
                   <span
+                    :id="boxitem.zoe"
                     class="Introduction-plus"
                     :class="{ 'active' : boxitem.style }"
-                    :id="boxitem.zoe"
-                  ></span>
+                  />
                   {{ boxitem.name }}
                 </h5>
-                <ul class="Introduction-content list-unstyled" :id="boxitem.dropid">
+                <ul
+                  :id="boxitem.dropid"
+                  class="Introduction-content list-unstyled"
+                >
                   <li
-                    class="Introduction-content-list"
-                    :class="{'active': mind.kind}"
                     v-for="mind in boxitem.rol"
                     :key="mind.zoe"
+                    class="Introduction-content-list"
+                    :class="{'active': mind.kind}"
                     @click.stop="currentcontext(mind.zoe)"
                   >
                     <h5 class="Introduction-content-title p-3 text-center">
@@ -45,37 +53,38 @@
           </div>
         </li>
         <li class="commodity d-flex flex-column col-12 col-md-8 col-lg-9 mt-2 mt-md-0">
-          <ul
-            class="commodity-content col-12 mx-auto row list-unstyled px-0 align-items-center "
-          >
+          <ul class="commodity-content col-12 mx-auto row list-unstyled px-0 align-items-center">
             <li
-              class="commodity-list col-12 col-md-6 col-lg-3 mb-3"
               v-for="item in products"
               :key="item.id"
+              class="commodity-list col-12 col-md-6 col-lg-3 mb-3"
             >
               <a
                 href="`#/custom/detail/${item.id}`"
+                class="text-decoration-none"
                 @click.prevent="ToProductsDetaill(item.id)"
-                class="text-decoration-none "
               >
                 <div class="card d-flex flex-row flex-md-column">
-                  <div class="card-img" @mousemove.stop="HoverShow">
+                  <div
+                    class="card-img"
+                    @mousemove.stop="HoverShow"
+                  >
                     <img
                       :src="item.imageUrl"
                       class="card-img-top img-fluid"
                       :data-num="item.id"
                       alt
-                    />
+                    >
                     <div
-                      class="card-hover d-flex justify-content-around align-items-center"
                       v-if="item.is_enabled"
+                      class="card-hover d-flex justify-content-around align-items-center"
                       :data-num="item.id"
                     >
                       <a
                         href="`#/custom/detail/${item.id}`"
                         class="btn btn-outline-warning"
-                        @click.prevent="ToProductsDetaill(item.id)"
                         :data-num="item.id"
+                        @click.prevent="ToProductsDetaill(item.id)"
                       >more</a>
                       <a
                         href="#"
@@ -94,12 +103,12 @@
                     <div class="card-text-btn mt-2">
                       <a
                         href="`#/custom/detail/${item.id}`"
-                        class="btn btn-info p-1 mr-2"
+                        class="btn btn-dark p-1 mr-2"
                         @click.prevent="ToProductsDetaill(item.id)"
                       >more</a>
                       <a
                         href="#"
-                        class="btn btn-primary p-1"
+                        class="btn btn-dark text-warning p-1"
                         @click.stop="getCurrentProduct(item.id)"
                       >加入購物車</a>
                     </div>
@@ -110,18 +119,18 @@
           </ul>
           <PaginationPhone
             :pages="pagination"
-            @emitPages="GetProducts"
             class="page-phone align-self-center mx-auto my-3"
-          ></PaginationPhone>
+            @emitPages="GetProducts"
+          />
           <Pagination
             :pages="pagination"
-            @emitPages="GetProducts"
             class="page-dash align-self-center mx-auto my-3"
-          ></Pagination>
+            @emitPages="GetProducts"
+          />
         </li>
       </ul>
     </div>
-    <CardModal :theProduct="temproduct" />
+    <CardModal :the-product="temproduct" />
   </div>
 </template>
 <script>
@@ -136,7 +145,7 @@ export default {
     Pagination,
     CardModal,
     PaginationPhone,
-    Alert
+    Alert,
   },
   data() {
     return {
@@ -151,7 +160,7 @@ export default {
           special: "all",
           took: true,
           style: false,
-          kind: false
+          kind: false,
         },
         {
           name: "魔戒-秩序陣營",
@@ -163,29 +172,29 @@ export default {
             {
               name: "夏爾",
               zoe: "theshire",
-              kind: false
+              kind: false,
             },
             {
               name: "剛鐸",
               zoe: "Gondor",
-              kind: false
+              kind: false,
             },
             {
               name: "洛汗",
               zoe: "Rohan",
-              kind: false
+              kind: false,
             },
             {
               name: "瑞文戴爾",
               zoe: "Rivendell",
-              kind: false
+              kind: false,
             },
             {
               name: "凱薩督姆",
               zoe: "Khazad-Dum",
-              kind: false
-            }
-          ]
+              kind: false,
+            },
+          ],
         },
         {
           name: "魔戒-混沌陣營",
@@ -197,14 +206,14 @@ export default {
             {
               name: "艾辛格",
               zoe: "isengard",
-              kind: false
+              kind: false,
             },
             {
               name: "魔多",
               zoe: "mordor",
-              kind: false
-            }
-          ]
+              kind: false,
+            },
+          ],
         },
         {
           name: "哈比人-秩序陣營",
@@ -216,19 +225,19 @@ export default {
             {
               name: "埃爾博",
               zoe: "LonelyMountain",
-              kind: false
+              kind: false,
             },
             {
               name: "鐵丘陵矮人",
               zoe: "IronHills",
-              kind: false
+              kind: false,
             },
             {
               name: "幽暗密林",
               zoe: "Mirkwood",
-              style: false
-            }
-          ]
+              style: false,
+            },
+          ],
         },
         {
           name: "哈比人-混沌陣營",
@@ -240,9 +249,9 @@ export default {
             {
               name: "阿佐格軍團",
               zoe: "azog",
-              kind: false
-            }
-          ]
+              kind: false,
+            },
+          ],
         },
         {
           name: "遊戲相關內容",
@@ -254,12 +263,33 @@ export default {
             {
               name: "戰爭規則書",
               zoe: "book",
-              kind: false
-            }
-          ]
-        }
-      ]
+              kind: false,
+            },
+          ],
+        },
+      ],
     };
+  },
+  computed: {
+    ...mapGetters(["isLoading"]),
+    ...mapGetters("productsmodules", [
+      "products",
+      "pagination",
+      "temproduct",
+      "contxt",
+      "txt",
+    ]),
+    ...mapGetters("cardmodules", ["cartItem"]),
+  },
+  created() {
+    this.GetProducts();
+  },
+  mounted() {
+    $(".Introduction-content").hide();
+    $(".card-hover").hide();
+    let ALLid = document.getElementById("All");
+    let removeplus = document.getElementById("all");
+    ALLid.removeChild(removeplus);
   },
   methods: {
     getCurrentProduct(id) {
@@ -274,7 +304,7 @@ export default {
       let vm = this;
       vm.$store.commit("productsmodules/CURRENTCONTEXT", e);
       vm.GetProducts();
-      vm.menu.forEach(item => {
+      vm.menu.forEach((item) => {
         if (e == item.special) {
           if (item.kind == false) {
             item.kind = true;
@@ -297,7 +327,7 @@ export default {
     },
     dropitem(e) {
       let vm = this;
-      vm.menu.forEach(item => {
+      vm.menu.forEach((item) => {
         if (e === item.zoe && e !== item.special) {
           if (item.style == false) {
             item.style = true;
@@ -313,29 +343,8 @@ export default {
       let take = e.target.dataset.num;
       this.$store.commit("productsmodules/HOVERLIST", take);
     },
-    ...mapActions("productsmodules", ["GetProducts"])
+    ...mapActions("productsmodules", ["GetProducts"]),
   },
-  computed: {
-    ...mapGetters(["isLoading"]),
-    ...mapGetters("productsmodules", [
-      "products",
-      "pagination",
-      "temproduct",
-      "contxt",
-      "txt"
-    ]),
-    ...mapGetters("cardmodules", ["cartItem"])
-  },
-  mounted() {
-    $(".Introduction-content").hide();
-    $(".card-hover").hide();
-    let ALLid = document.getElementById("All");
-    let removeplus = document.getElementById("all");
-    ALLid.removeChild(removeplus);
-  },
-  created() {
-    this.GetProducts();
-  }
 };
 </script>
 

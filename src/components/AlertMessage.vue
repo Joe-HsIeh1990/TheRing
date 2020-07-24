@@ -1,17 +1,17 @@
 <template>
   <div class="message-alert">
     <div
-      class="alert alert-dismissible"
-      :class="'alert-' + item.status"
       v-for="(item , i) in messages"
       :key="i"
+      class="alert alert-dismissible"
+      :class="'alert-' + item.status"
     >
       {{ item.message }}
       <button
         type="button"
         class="close"
-        @click="removeMessage(i)"
         aria-label="Close"
+        @click="removeMessage(i)"
       >
         <span aria-hidden="true">&times;</span>
       </button>
@@ -26,6 +26,17 @@ export default {
     return {
       messages: []
     };
+  },
+  computed: {
+    messagesback() {
+      return this.$store.state.messages;
+    }
+  },
+  created() {
+    const vm = this;
+    vm.$bus.$on("message:push", (message, status = "warning") => {
+      vm.updateMessage(message, status);
+    });
   },
   methods: {
     updateMessage(message, status) {
@@ -50,17 +61,6 @@ export default {
         });
       }, 6000);
     }
-  },
-  computed: {
-    messagesback() {
-      return this.$store.state.messages;
-    }
-  },
-  created() {
-    const vm = this;
-    vm.$bus.$on("message:push", (message, status = "warning") => {
-      vm.updateMessage(message, status);
-    });
   }
 };
 </script>

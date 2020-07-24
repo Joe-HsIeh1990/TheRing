@@ -1,12 +1,18 @@
-<template >
+<template>
   <nav class="nav shadow-sm py-md-0 px-0">
     <Alert />
     <div
       class="nav-container d-flex px-0 flex-wrap justify-content-between align-content-center p-2"
     >
       <div class="nav-logo d-flex align-items-center">
-        <router-link to="/" class="text-decoration-none">
-          <a href="#" class>
+        <router-link
+          to="/"
+          class="text-decoration-none"
+        >
+          <a
+            href="#"
+            class
+          >
             <h2 class="text-white">AsStore</h2>
           </a>
         </router-link>
@@ -20,22 +26,42 @@
               :data-toggle="cartline"
               @click="cartdrop"
             >
-              <font-awesome-icon icon="cart-plus" size="lg" />
-              <span class="cart-num text-center text-white" v-if="cartlength > 0">{{ cartlength }}</span>
+              <font-awesome-icon
+                icon="cart-plus"
+                size="lg"
+              />
+              <span
+                v-if="cartlength > 0"
+                class="cart-num text-center text-white"
+              >{{ cartlength }}</span>
             </button>
             <div class="dropdown-menu p-2">
-              <h6 class="p-2">已加入購物車</h6>
+              <h6 class="p-2">
+                已加入購物車
+              </h6>
               <table class="table mb-2">
                 <tbody>
-                  <tr v-for="item in cart.carts" :key="item.id">
+                  <tr
+                    v-for="item in cart.carts"
+                    :key="item.id"
+                  >
                     <td class="px-2">
-                      <img :src="item.product.imageUrl" width="30" />
+                      <img
+                        :src="item.product.imageUrl"
+                        width="30"
+                      >
                     </td>
-                    <td class="ellipsis px-2 align-middle">{{ item.product.title }}</td>
-                    <td class="text-nowrap px-2 align-middle">{{ item.qty }} 隻</td>
+                    <td class="ellipsis px-2 align-middle">
+                      {{ item.product.title }}
+                    </td>
+                    <td class="text-nowrap px-2 align-middle">
+                      {{ item.qty }} 隻
+                    </td>
                     <td
                       class="text-right text-nowrap px-2 align-middle mincart-total"
-                    >{{item.total | currency}}</td>
+                    >
+                      {{ item.total | currency }}
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -48,24 +74,49 @@
             </div>
           </div>
         </div>
-        <div class="hamburger" :class="{ 'hamburger-x' : ham }" @click="hamburger">
-          <span></span>
+        <div
+          class="hamburger"
+          :class="{ 'hamburger-x' : ham }"
+          @click="hamburger"
+        >
+          <span />
         </div>
       </div>
 
       <ul class="nav-content list-unstyled d-md-flex mb-0 align-items-center">
-        <router-link to="/" class="text-decoration-none">
+        <router-link
+          to="/"
+          class="text-decoration-none"
+        >
           <li class="nav-list mr-0 mr-md-5 py-3 py-md-0 pl-3 pl-md-0">
-            <a href="#" class="font-weight-bold">首頁</a>
+            <a
+              href="#"
+              class="font-weight-bold"
+            >首頁</a>
           </li>
         </router-link>
-        <li class="nav-list mr-md-5 mr-0 py-3 py-md-0 pl-3 pl-md-0" @click.prevent="GoProduct">
-          <a href="#" class="font-weight-bold">商品</a>
+        <li
+          class="nav-list mr-md-5 mr-0 py-3 py-md-0 pl-3 pl-md-0"
+          @click.prevent="GoProduct"
+        >
+          <a
+            href="#"
+            class="font-weight-bold"
+          >商品</a>
         </li>
-        <router-link to="/custom/login" class="text-decoration-none">
+        <router-link
+          to="/custom/login"
+          class="text-decoration-none"
+        >
           <li class="nav-list mr-md-5 mr-0 py-3 py-md-0 pl-3 pl-md-0">
-            <a href="#" class="font-weight-bold">
-              <font-awesome-icon icon="user-cog" size="lg" />
+            <a
+              href="#"
+              class="font-weight-bold"
+            >
+              <font-awesome-icon
+                icon="user-cog"
+                size="lg"
+              />
             </a>
           </li>
         </router-link>
@@ -77,22 +128,42 @@
               :data-toggle="cartline"
               @click="cartdrop"
             >
-              <font-awesome-icon icon="cart-plus" size="lg" />
-              <span class="cart-num text-center text-white" v-if="cartlength > 0">{{ cartlength }}</span>
+              <font-awesome-icon
+                icon="cart-plus"
+                size="lg"
+              />
+              <span
+                v-if="cartlength > 0"
+                class="cart-num text-center text-white"
+              >{{ cartlength }}</span>
             </button>
             <div class="dropdown-menu p-2">
-              <h6 class="p-2">已加入購物車</h6>
+              <h6 class="p-2">
+                已加入購物車
+              </h6>
               <table class="table mb-2">
                 <tbody>
-                  <tr v-for="item in cart.carts" :key="item.id">
+                  <tr
+                    v-for="item in cart.carts"
+                    :key="item.id"
+                  >
                     <td class="px-2">
-                      <img :src="item.product.imageUrl" width="30" />
+                      <img
+                        :src="item.product.imageUrl"
+                        width="30"
+                      >
                     </td>
-                    <td class="ellipsis px-2 align-middle">{{ item.product.title }}</td>
-                    <td class="text-nowrap px-2 align-middle">{{ item.qty }} 隻</td>
+                    <td class="ellipsis px-2 align-middle">
+                      {{ item.product.title }}
+                    </td>
+                    <td class="text-nowrap px-2 align-middle">
+                      {{ item.qty }} 隻
+                    </td>
                     <td
                       class="text-right text-nowrap px-2 align-middle mincart-total"
-                    >{{ item.total | currency }}</td>
+                    >
+                      {{ item.total | currency }}
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -113,16 +184,31 @@ import { mapGetters, mapActions } from "vuex";
 import Alert from "../components/AlertMessage";
 import $ from "jquery";
 export default {
-  components: {
-    Alert
-  },
   name: "Navbar",
+  components: {
+    Alert,
+  },
   data() {
     return {
       ham: false,
       cartline: "dropdown",
-      time: 4
+      time: 4,
     };
+  },
+  computed: {
+    ...mapGetters("cardmodules", ["cart", "cartlength"]),
+  },
+  mounted() {
+    this.getCart();
+    let winwidth = window.innerWidth;
+    if (winwidth >= 767) {
+      $(".hamburger").hide();
+      $(".nav-cart").hide();
+      $(".nav-list-cart").show();
+    } else {
+      $(".nav-list-cart").hide();
+      $(".nav-content").hide();
+    }
   },
   methods: {
     cartdrop() {
@@ -165,26 +251,8 @@ export default {
     GoCustomerCart() {
       this.$router.push("/custom/customcart");
     },
-    ...mapActions("cardmodules", ["getCart"])
+    ...mapActions("cardmodules", ["getCart"]),
   },
-  computed: {
-    ...mapGetters("cardmodules", ["cart", "cartlength"])
-  },
-  mounted() {
-    this.getCart();
-    let winwidth = window.innerWidth;
-    if (winwidth >= 767) {
-      $(".hamburger").hide();
-      $(".nav-cart").hide();
-      $(".nav-list-cart").show();
-    } else {
-      $(".nav-list-cart").hide();
-      $(".nav-content").hide();
-    }
-  }
-  // beforeDestroy() {
-  //   clearInterval(this.timer);
-  // }
 };
 </script>
 <style lang="scss" scoped>

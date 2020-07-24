@@ -4,35 +4,50 @@
       <div class="foot-container">
         <div class="foot-top d-flex justify-content-betweem">
           <ul class="top-content d-flex align-items-center list-unstyled">
-            <router-link to="/" class="text-decoration-none">
+            <router-link
+              to="/"
+              class="text-decoration-none"
+            >
               <li class="top-item">
                 <a href="#">首頁</a>
               </li>
             </router-link>
-            <router-link to="/custom/products" class="text-decoration-none">
+            <router-link
+              to="/custom/products"
+              class="text-decoration-none"
+            >
               <li class="top-item">
                 <a href="#">商品</a>
               </li>
             </router-link>
           </ul>
           <div class="top-img d-flex">
-            <a href="#" @click.prevent="notuse">
+            <a
+              href="#"
+              @click.prevent="notuse"
+            >
               <img
                 src="https://raw.githubusercontent.com/hexschool/webLayoutTraining1st/master/week3/icon-fb.svg"
                 alt
-              />
+              >
             </a>
-            <a href="#" @click.prevent="notuse">
+            <a
+              href="#"
+              @click.prevent="notuse"
+            >
               <img
                 src="https://raw.githubusercontent.com/hexschool/webLayoutTraining1st/master/week3/icon-ig.svg"
                 alt
-              />
+              >
             </a>
-            <a href="#" @click.prevent="notuse">
+            <a
+              href="#"
+              @click.prevent="notuse"
+            >
               <img
                 src="https://raw.githubusercontent.com/hexschool/webLayoutTraining1st/master/week3/icon-line.svg"
                 alt
-              />
+              >
             </a>
           </div>
         </div>
@@ -42,15 +57,19 @@
               <img
                 src="https://raw.githubusercontent.com/hexschool/webLayoutTraining1st/master/week3/icon-phone.svg"
                 alt
-              />
-              <h2 class="main-first">0800-000-000</h2>
+              >
+              <h2 class="main-first">
+                0800-000-000
+              </h2>
             </div>
             <div class="main-item d-flex align-items-center">
               <img
                 src="https://raw.githubusercontent.com/hexschool/webLayoutTraining1st/master/week3/icon-mail.svg"
                 alt
-              />
-              <h2 class="main-sec">ring@business.com</h2>
+              >
+              <h2 class="main-sec">
+                ring@business.com
+              </h2>
             </div>
           </div>
         </div>
@@ -64,7 +83,9 @@
           </div>
         </div>
         <div class="foot-operation pb-3">
-          <p class="text-white">僅個人練習使用，不做任何商業用途,圖片等相關物件所有權皆為英國Games WorkShop所有。</p>
+          <p class="text-white">
+            僅個人練習使用，不做任何商業用途,圖片等相關物件所有權皆為英國Games WorkShop所有。
+          </p>
         </div>
       </div>
     </footer>

@@ -12,7 +12,7 @@
     &-title {
       position: relative;
       cursor: pointer;
-      color: $color-three;
+      color: #000000;
     }
     &.activeall {
       background-color: #000000;
@@ -53,17 +53,17 @@
     h5 {
       position: relative;
       cursor: pointer;
-      color: $color-first;
+      color: #fff;
     }
     &.active {
-      background-color: $color-first;
+      background-color: #fff;
       h5 {
-        color: $color-four;
+        color: #000000;
       }
     }
   }
   &-plus {
-    @include plus($color-first, $color-four);
+    @include plus(#fff, #000000);
   }
 }
 .commodity {
@@ -71,7 +71,7 @@
   &-title {
     background-color: #000000;
     h5 {
-      color: $color-first;
+      color: #fff;
     }
   }
 }
@@ -99,7 +99,7 @@
     z-index: 2;
   }
   &-body {
-    background-color: $color-first;
+    background-color: #f3f3f3;
     p {
       text-overflow: ellipsis;
       overflow: hidden;

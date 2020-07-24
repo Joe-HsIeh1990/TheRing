@@ -1,40 +1,59 @@
 <template>
   <div>
     <div
-      class="modal fade"
       id="productModal"
+      class="modal fade"
       tabindex="-1"
       role="dialog"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog " role="document">
+      <div
+        class="modal-dialog "
+        role="document"
+      >
         <div class="modal-content">
           <div class="modal-header bg-dark">
-            <h6 class="modal-title text-white" id="exampleModalLabel">商品內容</h6>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <h6
+              id="exampleModalLabel"
+              class="modal-title text-white"
+            >
+              商品內容
+            </h6>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <img :src="thisProduct.imageUrl" class="img-fluid" alt />
+            <img
+              :src="thisProduct.imageUrl"
+              class="img-fluid"
+              alt
+            >
             <p class="h5 mt-2">
               {{ thisProduct.title }}
-              <br />
+              <br>
               <small class="h6">{{ thisProduct.description }}</small>
             </p>
-            <h6 class="text-right h4">加入購物車&nbsp;NT{{ thisProduct.origin_price | currency }}</h6>
+            <h6 class="text-right h4">
+              加入購物車&nbsp;NT{{ thisProduct.origin_price | currency }}
+            </h6>
           </div>
           <div class="modal-footer">
             <div class="text-nowrap mr-4 modal-total">
               小計
-              <strong>{{ counts * thisProduct.origin_price | currency}}</strong>
+              <strong>{{ counts * thisProduct.origin_price | currency }}</strong>
             </div>
             <button
               type="button"
               class="modal-btn btn-dark px-4"
-              @click="addtoCart(thisProduct.id)"
               :class="{ disabled:thisProduct.id === cartdisable }"
+              @click="addtoCart(thisProduct.id)"
             >
               立即購買
             </button>

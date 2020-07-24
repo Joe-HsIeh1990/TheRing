@@ -1,7 +1,10 @@
 <template>
   <nav aria-label="Page navigation example">
     <ul class="pagination mb-0">
-      <li class="page-item" :class="{ disabled: !pages.has_pre }">
+      <li
+        class="page-item"
+        :class="{ disabled: !pages.has_pre }"
+      >
         <a
           class="page-link"
           href="#"
@@ -12,15 +15,22 @@
         </a>
       </li>
       <li
-        class="page-item"
         v-for=" page in pages.total_pages"
-        :pages="page"
         :key="page"
+        class="page-item"
+        :pages="page"
         :class="{ active : pages.current_page === page }"
       >
-        <a class="page-link" href="#" @click.prevent="getPages(page)">{{page}}</a>
+        <a
+          class="page-link"
+          href="#"
+          @click.prevent="getPages(page)"
+        >{{ page }}</a>
       </li>
-      <li class="page-item" :class="{ disabled: !pages.has_next }">
+      <li
+        class="page-item"
+        :class="{ disabled: !pages.has_next }"
+      >
         <a
           class="page-link"
           href="#"

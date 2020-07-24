@@ -13,17 +13,37 @@
           class="navback-content d-flex flex-md-column flex-row mb-0 mb-md-3 justify-content-between align-items-center list-unstyled"
         >
           <li class="nav-item text-center mr-3 mr-md-0 mb-md-5">
-            <router-link to="/admin/adminproduct" class="text-decoration-none text-white mb-0">產品列表</router-link>
+            <router-link
+              to="/admin/adminproduct"
+              class="text-decoration-none text-white mb-0"
+            >
+              產品列表
+            </router-link>
           </li>
           <li class="nav-item text-center mb-0 mr-3 mr-md-0 mb-md-5">
-            <router-link to="/admin/adminorder" class="text-decoration-none text-white">訂單列表</router-link>
+            <router-link
+              to="/admin/adminorder"
+              class="text-decoration-none text-white"
+            >
+              訂單列表
+            </router-link>
           </li>
           <li class="nav-item text-center mb-0 mr-3 mr-md-0 mb-md-5">
-            <router-link to="/admin/admincoupones" class="text-decoration-none text-white">優惠卷</router-link>
+            <router-link
+              to="/admin/admincoupones"
+              class="text-decoration-none text-white"
+            >
+              優惠卷
+            </router-link>
           </li>
         </ul>
         <div class="d-flex justify-content-center align-content-center">
-          <button class="m-auto brn btn-danger" @click="signout()">登出</button>
+          <button
+            class="m-auto brn btn-danger"
+            @click="signout()"
+          >
+            登出
+          </button>
         </div>
       </div>
     </nav>

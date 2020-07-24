@@ -1,36 +1,63 @@
 <template>
-  <div class="container">
-    <loading :active.sync="isLoading"></loading>
-    <div class="row align-items-center mb-3" v-if="currentProduct.id">
+  <div class="container py-5">
+    <loading :active.sync="isLoading" />
+    <div
+      v-if="currentProduct.id"
+      class="row align-items-center mb-3"
+    >
       <div class="col-md-7 mt-3 px-0">
         <div>
-          <img :src="currentProduct.imageUrl" class="detail-img" alt />
+          <img
+            :src="currentProduct.imageUrl"
+            class="detail-img"
+            alt
+          >
         </div>
       </div>
       <div class="detail-cash col-md-5 detall-price">
         <div class="p-3">
-          <h2 class="font-weight-bold mb-2">{{ currentProduct.title }}</h2>
+          <h2 class="font-weight-bold mb-2">
+            {{ currentProduct.title }}
+          </h2>
           <div class="mb-3">
             <del>原價 {{ currentProduct.origin_price | currency }}</del>
-            <h4 class="mt-2 text-danger font-weight-bold">特價 {{ currentProduct.price | currency }}</h4>
+            <h4 class="mt-2 text-danger font-weight-bold">
+              特價 {{ currentProduct.price | currency }}
+            </h4>
           </div>
-          <select class="form-control mb-3" v-model="counts">
-            <option :value="num" v-for="num in 10" :key="num">選購 {{num}} 隻</option>
+          <select
+            v-model="counts"
+            class="form-control mb-3"
+          >
+            <option
+              v-for="num in 10"
+              :key="num"
+              :value="num"
+            >
+              選購 {{ num }} 隻
+            </option>
           </select>
           <p
             class="text-right text-main font-weight-bold mb-1"
-          >小計 {{ counts * currentProduct.price | currency }}</p>
+          >
+            小計 {{ counts * currentProduct.price | currency }}
+          </p>
           <a
-            class="btn btn-dark btn-block text-white"
+            class="btn btn-dark btn-block text-warning"
             @click="addtoCart(currentProduct.id,counts)"
           >加入購物車</a>
         </div>
       </div>
     </div>
     <div class="row detail-container bg-white">
-      <div class="col-md-8 detail-content-title my-3 p-3" v-if="currentProduct.id">
+      <div
+        v-if="currentProduct.id"
+        class="col-md-8 detail-content-title my-3 p-3"
+      >
         <div>
-          <h3 class="mb-3 font-weight-bold pb-3">產品描述</h3>
+          <h3 class="mb-3 font-weight-bold pb-3">
+            產品描述
+          </h3>
           <hr>
           <p>
             {{ currentProduct.description }}
@@ -38,14 +65,21 @@
           </p>
         </div>
       </div>
-      <div class="col-md-12 detall-content-same mb-5" v-if="currentProduct.id">
-        <h3 class="font-weight-bold my-3 pb-3">同類別商品</h3>
+      <div
+        v-if="currentProduct.id"
+        class="col-md-12 detall-content-same mb-5"
+      >
+        <h3 class="font-weight-bold my-3 pb-3">
+          同類別商品
+        </h3>
         <hr>
         <CardCarousel :filterscard="filterscarousel" />
       </div>
       <div class="col-md-12">
         <div class="detail-content-title">
-          <h3 class="my-3 pb-3">消費者權益</h3>
+          <h3 class="my-3 pb-3">
+            消費者權益
+          </h3>
           <hr>
           <ul>
             <li>退款必須滿足兩個條件，分別是『商品未拼裝前有瑕疵』與『商品購入後未開封七天』。</li>
@@ -63,29 +97,19 @@ import CardCarousel from "../components/CardCarousel";
 import { mapGetters, mapActions } from "vuex";
 export default {
   components: {
-    CardCarousel
+    CardCarousel,
   },
   data() {
     return {
       counts: 1,
-      currentPageProduct: {}
+      currentPageProduct: {},
     };
-  },
-  methods: {
-    addtoCart(id, qty = 1) {
-      const vm = this;
-      vm.$store.dispatch("cardmodules/addtoCart", { id, qty }).then(() => {
-        vm.counts = 1;
-      });
-    },
-    ...mapActions("productsmodules", ["getCurrentPageProduct"]),
-    ...mapActions("homemodules", ["CarouselProducts"])
   },
   computed: {
     filterscarousel() {
       let vm = this;
       let newarr = [];
-      newarr = vm.carouselproducts.filter(item => {
+      newarr = vm.carouselproducts.filter((item) => {
         if (item.title !== vm.currentProduct.title) {
           return item.category.indexOf(vm.currentProduct.category) != -1;
         }
@@ -94,7 +118,13 @@ export default {
     },
     ...mapGetters(["isLoading"]),
     ...mapGetters("productsmodules", ["currentProduct"]),
-    ...mapGetters("homemodules", ["carouselproducts"])
+    ...mapGetters("homemodules", ["carouselproducts"]),
+  },
+  watch: {
+    "$route.params.id": function () {
+      const vm = this;
+      vm.getCurrentPageProduct(vm.$route.params.id);
+    },
   },
   created() {
     this.$store
@@ -104,12 +134,16 @@ export default {
       });
     this.CarouselProducts();
   },
-  watch: {
-    "$route.params.id": function() {
+  methods: {
+    addtoCart(id, qty = 1) {
       const vm = this;
-      vm.getCurrentPageProduct(vm.$route.params.id);
-    }
-  }
+      vm.$store.dispatch("cardmodules/addtoCart", { id, qty }).then(() => {
+        vm.counts = 1;
+      });
+    },
+    ...mapActions("productsmodules", ["getCurrentPageProduct"]),
+    ...mapActions("homemodules", ["CarouselProducts"]),
+  },
 };
 </script>
 

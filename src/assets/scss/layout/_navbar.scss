@@ -1,6 +1,5 @@
 .nav {
-    background-color: #181818;
-    // height: 50px;
+    background-color: #000000;
     &-container {
         width: 100%;
     }
@@ -17,7 +16,7 @@
         cursor: pointer;
         a {
             &:hover {
-                color: $color-sec;
+                color: #888888;
             }
         }
     }
