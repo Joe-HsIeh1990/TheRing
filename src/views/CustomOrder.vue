@@ -250,7 +250,7 @@ export default {
       });
     },
     backToCart() {
-      this.$router.push("/custom/customcart");
+      this.$router.go(-1);
     },
   },
 

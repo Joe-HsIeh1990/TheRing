@@ -132,11 +132,11 @@
                   {{ cart.final_total | currency }}
                 </p>
               </div>
-              <a
+              <button
                 href="#"
                 class="btn btn-dark text-warning btn-block"
                 @click="GoOrder"
-              >下一步</a>
+              >下一步</button>
             </div>
           </div>
         </div>
