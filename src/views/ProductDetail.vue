@@ -117,8 +117,8 @@ export default {
       return newarr;
     },
     ...mapGetters(["isLoading"]),
-    ...mapGetters("productsmodules", ["currentProduct"]),
-    ...mapGetters("homemodules", ["carouselproducts"]),
+    ...mapGetters("productsModules", ["currentProduct"]),
+    ...mapGetters("homeModules", ["carouselproducts"]),
   },
   watch: {
     "$route.params.id": function () {
@@ -128,7 +128,7 @@ export default {
   },
   created() {
     this.$store
-      .dispatch("productsmodules/getCurrentPageProduct", this.$route.params.id)
+      .dispatch("productsModules/getCurrentPageProduct", this.$route.params.id)
       .then(() => {
         this.currentPageProduct = Object.assign({}, this.currentProduct);
       });
@@ -137,12 +137,12 @@ export default {
   methods: {
     addtoCart(id, qty = 1) {
       const vm = this;
-      vm.$store.dispatch("cardmodules/addtoCart", { id, qty }).then(() => {
+      vm.$store.dispatch("cardModules/addtoCart", { id, qty }).then(() => {
         vm.counts = 1;
       });
     },
-    ...mapActions("productsmodules", ["getCurrentPageProduct"]),
-    ...mapActions("homemodules", ["CarouselProducts"]),
+    ...mapActions("productsModules", ["getCurrentPageProduct"]),
+    ...mapActions("homeModules", ["CarouselProducts"]),
   },
 };
 </script>

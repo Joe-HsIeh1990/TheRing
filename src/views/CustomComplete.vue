@@ -93,10 +93,10 @@ import { mapGetters } from "vuex";
 export default {
   name: "CustomComplete",
   computed: {
-    ...mapGetters("ordermodules", ["order"]),
+    ...mapGetters("orderModules", ["order"]),
   },
   created() {
-    this.$store.dispatch("ordermodules/getOrder", this.$route.params.orderId);
+    this.$store.dispatch("orderModules/getOrder", this.$route.params.orderId);
   },
   methods: {
     toProducts() {

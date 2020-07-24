@@ -236,16 +236,16 @@ export default {
   },
   computed: {
     ...mapGetters(["isLoading"]),
-    ...mapGetters("cardmodules", ["cart"]),
+    ...mapGetters("cardModules", ["cart"]),
   },
   created() {
-    this.$store.dispatch("cardmodules/getCart");
+    this.$store.dispatch("cardModules/getCart");
   },
   methods: {
     createOrder() {
       const vm = this;
       const order = vm.form;
-      vm.$store.dispatch("ordermodules/createOrder", order).then(() => {
+      vm.$store.dispatch("orderModules/createOrder", order).then(() => {
         vm.leave = true;
       });
     },

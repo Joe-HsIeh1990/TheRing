@@ -196,7 +196,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("cardmodules", ["cart", "cartlength"]),
+    ...mapGetters("cardModules", ["cart", "cartlength"]),
   },
   mounted() {
     this.getCart();
@@ -251,7 +251,7 @@ export default {
     GoCustomerCart() {
       this.$router.push("/custom/customcart");
     },
-    ...mapActions("cardmodules", ["getCart"]),
+    ...mapActions("cardModules", ["getCart"]),
   },
 };
 </script>

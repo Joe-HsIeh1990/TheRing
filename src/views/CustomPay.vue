@@ -191,16 +191,16 @@ export default {
   },
   computed: {
     ...mapGetters(["isLoading"]),
-    ...mapGetters("ordermodules", ["order"]),
+    ...mapGetters("orderModules", ["order"]),
   },
   created() {
     this.orderId = this.$route.params.orderId;
-    this.$store.dispatch("ordermodules/getOrder", this.orderId);
+    this.$store.dispatch("orderModules/getOrder", this.orderId);
   },
   methods: {
     payOrder() {
       const vm = this;
-      vm.$store.dispatch("ordermodules/payOrder", this.orderId).then(() => {
+      vm.$store.dispatch("orderModules/payOrder", this.orderId).then(() => {
         vm.leave = true;
       });
     },

@@ -272,14 +272,14 @@ export default {
   },
   computed: {
     ...mapGetters(["isLoading"]),
-    ...mapGetters("productsmodules", [
+    ...mapGetters("productsModules", [
       "products",
       "pagination",
       "temproduct",
       "contxt",
       "txt",
     ]),
-    ...mapGetters("cardmodules", ["cartItem"]),
+    ...mapGetters("cardModules", ["cartItem"]),
   },
   created() {
     this.GetProducts();
@@ -293,7 +293,7 @@ export default {
   },
   methods: {
     getCurrentProduct(id) {
-      this.$store.dispatch("productsmodules/getCurrentProduct", id).then(() => {
+      this.$store.dispatch("productsModules/getCurrentProduct", id).then(() => {
         $("#productModal").modal("show");
       });
     },
@@ -302,7 +302,7 @@ export default {
     },
     currentcontext(e) {
       let vm = this;
-      vm.$store.commit("productsmodules/CURRENTCONTEXT", e);
+      vm.$store.commit("productsModules/CURRENTCONTEXT", e);
       vm.GetProducts();
       vm.menu.forEach((item) => {
         if (e == item.special) {
@@ -341,9 +341,9 @@ export default {
     },
     HoverShow(e) {
       let take = e.target.dataset.num;
-      this.$store.commit("productsmodules/HOVERLIST", take);
+      this.$store.commit("productsModules/HOVERLIST", take);
     },
-    ...mapActions("productsmodules", ["GetProducts"]),
+    ...mapActions("productsModules", ["GetProducts"]),
   },
 };
 </script>

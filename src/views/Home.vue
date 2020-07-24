@@ -181,7 +181,7 @@ export default {
       );
       return newarr;
     },
-    ...mapGetters("homemodules", ["carouselproducts"]),
+    ...mapGetters("homeModules", ["carouselproducts"]),
   },
   created() {
     this.CarouselProducts();
@@ -222,7 +222,7 @@ export default {
       });
       e.preventDefault();
     },
-    ...mapActions("homemodules", ["CarouselProducts"]),
+    ...mapActions("homeModules", ["CarouselProducts"]),
   },
 };
 </script>

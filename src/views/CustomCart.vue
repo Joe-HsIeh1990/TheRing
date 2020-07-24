@@ -167,9 +167,9 @@ export default {
       );
       return newarr;
     },
-    ...mapGetters("homemodules", ["carouselproducts"]),
+    ...mapGetters("homeModules", ["carouselproducts"]),
     ...mapGetters(["isLoading"]),
-    ...mapGetters("cardmodules", ["cart", "cartItem"]),
+    ...mapGetters("cardModules", ["cart", "cartItem"]),
   },
   created() {
     this.getCart();
@@ -178,13 +178,13 @@ export default {
     deleteCart(id) {
       const vm = this;
       vm.cartdisable = id;
-      vm.$store.dispatch("cardmodules/deleteCart", id);
+      vm.$store.dispatch("cardModules/deleteCart", id);
     },
     addCouponCode() {
       const vm = this;
       if (vm.coupon_num !== "") {
         vm.$store
-          .dispatch("cardmodules/addCouponCode", vm.coupon_num)
+          .dispatch("cardModules/addCouponCode", vm.coupon_num)
           .then(() => {
             vm.coupon_num = "";
           });
@@ -193,8 +193,8 @@ export default {
     GoOrder() {
       this.$router.push("/custom/customorder");
     },
-    ...mapActions("homemodules", ["CarouselProducts"]),
-    ...mapActions("cardmodules", ["getCart"]),
+    ...mapActions("homeModules", ["CarouselProducts"]),
+    ...mapActions("cardModules", ["getCart"]),
   },
 };
 </script>

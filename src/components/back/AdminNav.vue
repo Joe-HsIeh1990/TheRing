@@ -54,7 +54,7 @@ export default {
   name: "AdminNav",
   methods: {
     signout() {
-      this.$store.dispatch("adminmembermodules/signout");
+      this.$store.dispatch("adminMemberModules/signout");
     }
   }
 };

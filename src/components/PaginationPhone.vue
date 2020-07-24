@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     getPages(page) {
-      this.$store.dispatch("productsmodules/GetProducts", page);
+      this.$store.dispatch("productsModules/GetProducts", page);
     }
   }
 };

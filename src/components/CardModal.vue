@@ -97,7 +97,7 @@ export default {
     addtoCart(id, qty) {
       const vm = this;
       vm.cartdisable = id;
-      vm.$store.dispatch("cardmodules/addtoCart", { id, qty }).then(() => {
+      vm.$store.dispatch("cardModules/addtoCart", { id, qty }).then(() => {
         $("#productModal").modal("hide");
         vm.cartdisable = "";
         vm.counts = 1;
