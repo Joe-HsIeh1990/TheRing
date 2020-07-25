@@ -72,7 +72,22 @@ export default {
   mutations: {
     CART(state, payload) {
       state.cart = payload;
-      state.cartlength = payload.carts.length;
+      // state.cartlength = payload.carts.length;
+      let arr = [];
+      let newarr = [];
+      state.cart.carts.forEach((item) => {
+        let str = item.product_id;
+        if(typeof arr[str] === 'undefined'){
+          arr[str] = item;
+        }else{
+          arr[str].qty += item.qty;
+        }
+      });
+      arr.splice(0,1);
+      newarr.push(arr);
+      state.cart.carts = newarr;
+      console.log(state.cart)
+      // state.cartlength = state.cart.carts.lenght
     },
     CARTITEM(state, payload) {
       state.cartItem = payload;
