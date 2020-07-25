@@ -79,6 +79,7 @@ export default {
         let str = item.product_id;
         if(typeof arr[str] === 'undefined'){
           arr[str] = item;
+          console.log( arr[str].product)
         }else{
           arr[str].qty += item.qty;
         }
@@ -86,8 +87,7 @@ export default {
       arr.splice(0,1);
       newarr.push(arr);
       state.cart.carts = newarr;
-      console.log(state.cart)
-      // state.cartlength = state.cart.carts.lenght
+      state.cartlength = state.cart.carts.length;
     },
     CARTITEM(state, payload) {
       state.cartItem = payload;
