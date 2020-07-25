@@ -42,12 +42,15 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}api/${process.env.VUE_APP_COSTOM}/cart/${id}`;
       context.commit('CARTITEM', id);
       context.commit('ISLOADING', true, { root: true });
-      axios.delete(api).then((response) => {
-        context.commit('ISLOADING', false, { root: true });
-        if (response.data.success) {
-          context.dispatch('getCart');
-        }
-      });
+      return new Promise((resolve) => {
+        axios.delete(api).then((response) => {
+          context.commit('ISLOADING', false, { root: true });
+          if (response.data.success) {
+            context.dispatch('getCart');
+            resolve();
+          }
+        });
+      })
     },
     addCouponCode(context, couponcode) {
       const api = `${process.env.VUE_APP_APIPATH}api/${process.env.VUE_APP_COSTOM}/coupon`;

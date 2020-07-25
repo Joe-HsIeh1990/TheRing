@@ -77,8 +77,8 @@
               <hr class="my-3">
               <div>
                 <div
-                  v-for="items in cart.carts"
-                  :key="items.id"
+                  v-for="(items ,index) in cart.carts"
+                  :key="index"
                   class="d-flex customerCart-order-item align-items-start mb-3"
                 >
                   <div class="d-flex flex-column mt-1">
@@ -103,23 +103,25 @@
                     class="ml-auto order-item-price"
                   >-{{ (cart.total -cart.final_total) | currency }}</span>
                 </div>
-                <div class="input-group input-group-sm">
-                  <input
-                    v-model="coupon_num"
-                    type="text"
-                    class="form-control"
-                    placeholder="請輸入優惠碼"
-                  >
-                  <div class="input-group-append">
-                    <button
-                      class="btn btn-outline-secondary"
-                      type="button"
-                      @click="addCouponCode"
+                <form action>
+                  <div class="input-group input-group-sm">
+                    <input
+                      v-model="coupon_num"
+                      type="text"
+                      class="form-control"
+                      placeholder="請輸入優惠碼"
                     >
-                      套用優惠碼
-                    </button>
+                    <div class="input-group-append">
+                      <button
+                        class="btn btn-outline-secondary"
+                        type="button"
+                        @click="addCouponCode"
+                      >
+                        套用優惠碼
+                      </button>
+                    </div>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
             <hr class="my-3">
@@ -136,7 +138,9 @@
                 href="#"
                 class="btn btn-dark text-warning btn-block"
                 @click="GoOrder"
-              >下一步</button>
+              >
+                下一步
+              </button>
             </div>
           </div>
         </div>
@@ -178,7 +182,9 @@ export default {
     deleteCart(id) {
       const vm = this;
       vm.cartdisable = id;
-      vm.$store.dispatch("cardModules/deleteCart", id);
+      vm.$store.dispatch("cardModules/deleteCart", id).then(() => {
+        vm.$bus.$emit("message:push", "已刪除", "danger");
+      });
     },
     addCouponCode() {
       const vm = this;

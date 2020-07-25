@@ -27,11 +27,6 @@ export default {
       messages: []
     };
   },
-  computed: {
-    messagesback() {
-      return this.$store.state.messages;
-    }
-  },
   created() {
     const vm = this;
     vm.$bus.$on("message:push", (message, status = "warning") => {

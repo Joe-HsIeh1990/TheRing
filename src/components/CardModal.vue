@@ -99,6 +99,11 @@ export default {
       vm.cartdisable = id;
       vm.$store.dispatch("cardModules/addtoCart", { id, qty }).then(() => {
         $("#productModal").modal("hide");
+        vm.$bus.$emit(
+            "message:push",
+            "商品已加入購物車內",
+            "danger"
+          );
         vm.cartdisable = "";
         vm.counts = 1;
       });

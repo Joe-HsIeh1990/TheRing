@@ -42,8 +42,8 @@
               <table class="table mb-2">
                 <tbody>
                   <tr
-                    v-for="item in cart.carts"
-                    :key="item.id"
+                    v-for="(item ,index ) in cart.carts"
+                    :key="index"
                   >
                     <td class="px-2">
                       <img
@@ -144,8 +144,8 @@
               <table class="table mb-2">
                 <tbody>
                   <tr
-                    v-for="item in cart.carts"
-                    :key="item.id"
+                    v-for="(item ,num) in cart.carts"
+                    :key="num"
                   >
                     <td class="px-2">
                       <img
@@ -193,9 +193,17 @@ export default {
       ham: false,
       cartline: "dropdown",
       time: 4,
+      newcart: [],
+      newCartlengh: ''
     };
   },
   computed: {
+    // cardfilter(){
+    //   let vm = this;
+    //   vm.newcart = vm.cart.carts.findInex(item => item.id === vm.cart.carts.id);
+    //   console.log(vm.newcart)
+    //   return vm.newcart != -1;
+    // },
     ...mapGetters("cardModules", ["cart", "cartlength"]),
   },
   mounted() {
@@ -209,6 +217,7 @@ export default {
       $(".nav-list-cart").hide();
       $(".nav-content").hide();
     }
+    // console.log(this.cardfilter)
   },
   methods: {
     cartdrop() {

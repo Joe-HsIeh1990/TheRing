@@ -52,7 +52,7 @@
     <div class="row detail-container bg-white">
       <div
         v-if="currentProduct.id"
-        class="col-md-8 detail-content-title my-3 p-3"
+        class="detail-description col-md-8 detail-content-title my-3 p-3"
       >
         <div>
           <h3 class="mb-3 font-weight-bold pb-3">
@@ -75,8 +75,8 @@
         <hr>
         <CardCarousel :filterscard="filterscarousel" />
       </div>
-      <div class="col-md-12">
-        <div class="detail-content-title">
+      <div class="detail-interests col-md-12">
+        <div>
           <h3 class="my-3 pb-3">
             消費者權益
           </h3>
@@ -139,6 +139,11 @@ export default {
       const vm = this;
       vm.$store.dispatch("cardModules/addtoCart", { id, qty }).then(() => {
         vm.counts = 1;
+        vm.$bus.$emit(
+            "message:push",
+            "商品已加入購物車內",
+            "danger"
+          );
       });
     },
     ...mapActions("productsModules", ["getCurrentPageProduct"]),
