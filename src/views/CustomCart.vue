@@ -3,147 +3,123 @@
     <loading :active.sync="isLoading" />
     <div class="pt-5 container customerCart mb-2">
       <h1
-        v-if="cart.total"
+        v-if="currentCart.length !== 0"
         class="text-center customerCart-title mb-5 text-secondary"
       >
         購物車
       </h1>
       <h5
-        v-if="!cart.total"
+        v-if="currentCart.length === 0"
         class="text-center py-5 mt-3 mb-5 nonecart"
       >
         目前您的購物車沒有任何商品!
       </h5>
-      <hr
-        v-if="!cart.total"
-        s
-      >
+      <hr v-if="currentCart.length === 0">
       <h3
-        v-if="!cart.total"
+        v-if="currentCart.length === 0"
         class="cart-recommend text-center mb-4 pl-2 font-weight-bold"
       >
         經典商品
       </h3>
-      <div v-if="!cart.total">
+      <div v-if="currentCart.length === 0">
         <CardCarousel :filterscard="filterscarousel" />
       </div>
       <div
-        v-if="cart.total"
+        v-if="currentCart.length !== 0"
         class="row"
       >
-        <div class="col-lg-7">
-          <ul class="list-unstyled customerCart-content">
-            <li
-              v-for="item in cart.carts"
-              :key="item.id"
-              class="mb-2 border"
-            >
-              <div class="customerCart-list d-flex flex-row">
-                <div class="customerCart-img">
-                  <img
-                    :src="item.product.imageUrl"
-                    class="img-fluid"
+        <div class="col-12">
+          <table class="table table-borderless">
+            <thead class="bg-primary">
+              <th />
+              <th>品名</th>
+              <th>數量</th>
+              <th class="text-right">
+                價格
+              </th>
+            </thead>
+            <tbody>
+              <tr
+                v-for="(item, index) in currentCart"
+                :key="index"
+              >
+                <td class="align-middle">
+                  <button
+                    type="button"
+                    class="btn btn-outline-danger btn-sm"
+                    @click="deleteCart(index)"
                   >
-                </div>
-                <div class="d-flex align-items-center ml-sm-0">
-                  <div>
-                    <h4 class="customerCart-list-title pl-3 mb-3">
-                      {{ item.product.title }}
-                    </h4>
-                    <div class="customerCart-list-info d-flex">
-                      <span
-                        class="price pl-3 mr-3"
-                      >{{ item.product.price | currency }}&nbsp;x&nbsp;{{ item.qty }}&nbsp; 隻</span>
+                    <i class="far fa-trash-alt" />
+                  </button>
+                </td>
+                <td class="align-middle">
+                  {{ item.product.title }}
+                </td>
+                <td
+                  class="tableQty align-middle"
+                  width="150px"
+                >
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <button
+                        class="btn btn-dark"
+                        :disabled="item.qty <= 1"
+                        type="btton"
+                        @click="item.qty--"
+                      >
+                        <font-awesome-icon
+                          icon="minus"
+                          class="text-warning"
+                        />
+                      </button>
                     </div>
-                  </div>
-                </div>
-                <div class="ml-auto pr-2 delete align-self-center">
-                  <a
-                    class="btn btn-danger text-white"
-                    :class="{ disabled:item.id === cartdisable }"
-                    @click="deleteCart(item.id)"
-                  >刪除</a>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="col-lg-5">
-          <div class="customerCart-order">
-            <div class="p-3">
-              <h2 class="h5">
-                訂單金額
-              </h2>
-              <hr class="my-3">
-              <div>
-                <div
-                  v-for="(items ,index) in cart.carts"
-                  :key="index"
-                  class="d-flex customerCart-order-item align-items-start mb-3"
-                >
-                  <div class="d-flex flex-column mt-1">
-                    <h5 class="mb-0 h6">
-                      {{ items.product.title }}
-                    </h5>
-                    <span>{{ items.qty }}隻</span>
-                  </div>
-                  <span class="ml-auto order-item-price">{{ items.total | currency }}</span>
-                </div>
-                <div
-                  v-if="cart.final_total&&cart.final_total !==cart.total"
-                  class="d-flex customerCart-order-item align-items-start text-success"
-                >
-                  <div class="d-flex flex-column">
-                    <h5 class="mb-0">
-                      已套用優惠
-                    </h5>
-                    <span>{{ (cart.final_total/cart.total*100) }}% OFF</span>
-                  </div>
-                  <span
-                    class="ml-auto order-item-price"
-                  >-{{ (cart.total -cart.final_total) | currency }}</span>
-                </div>
-                <form action>
-                  <div class="input-group input-group-sm">
                     <input
-                      v-model="coupon_num"
-                      type="text"
+                      v-model.number="item.qty"
+                      type="number"
                       class="form-control"
-                      placeholder="請輸入優惠碼"
+                      min="0"
                     >
                     <div class="input-group-append">
                       <button
-                        class="btn btn-outline-secondary"
+                        class="btn btn-dark"
                         type="button"
-                        @click="addCouponCode"
+                        @click="item.qty++"
                       >
-                        套用優惠碼
+                        <font-awesome-icon
+                          icon="plus"
+                          class="text-warning"
+                        />
                       </button>
                     </div>
                   </div>
-                </form>
-              </div>
-            </div>
-            <hr class="my-3">
-            <div class="pb-3 px-3 pt-0 customerCart-order-Next">
-              <div class="d-flex justify-content-end align-content-center mb-3 align-items-end">
-                <p class="subtotal mr-2">
+                </td>
+                <td class="align-middle text-right">
+                  {{ (item.product.price * item.qty) | currency }}
+                </td>
+              </tr>
+            </tbody>
+            <tfoot class="border-top">
+              <tr>
+                <td
+                  colspan="3"
+                  class="text-right"
+                >
                   總計
-                </p>
-                <p class="total h3 mb-0 text-danger">
-                  {{ cart.final_total | currency }}
-                </p>
-              </div>
-              <button
-                href="#"
-                class="btn btn-dark text-warning btn-block"
-                @click="GoOrder"
-              >
-                下一步
-              </button>
-            </div>
-          </div>
+                </td>
+                <td class="text-right">
+                  {{ totalPrice | currency }}
+                </td>
+              </tr>
+            </tfoot>
+          </table>
         </div>
+        <button
+          href="#"
+          class="btn btn-dark text-warning mx-auto"
+          @click="updateCart"
+        >
+          下一步
+        </button>
       </div>
     </div>
   </div>
@@ -160,6 +136,7 @@ export default {
     return {
       cartdisable: "",
       coupon_num: "",
+      currentCart: [],
     };
   },
   computed: {
@@ -171,36 +148,50 @@ export default {
       );
       return newarr;
     },
+    totalPrice() {
+      sessionStorage.setItem("cart", JSON.stringify(this.currentCart));
+      this.$bus.$emit("changCart");
+      return this.currentCart.reduce(
+        (total, item) => total + item.product.price * item.qty,
+        0
+      );
+    },
     ...mapGetters("homeModules", ["carouselproducts"]),
     ...mapGetters(["isLoading"]),
-    ...mapGetters("cardModules", ["cart", "cartItem"]),
+    ...mapGetters("cardModules", ["cart"]),
   },
   created() {
-    this.getCart();
+    this.getCarts();
   },
   methods: {
+    getCarts() {
+      this.currentCart = JSON.parse(sessionStorage.getItem("cart")) || [];
+    },
     deleteCart(id) {
-      const vm = this;
-      vm.cartdisable = id;
-      vm.$store.dispatch("cardModules/deleteCart", id).then(() => {
-        vm.$bus.$emit("message:push", "已刪除", "danger");
-      });
+      this.currentCart.splice(id, 1);
+      sessionStorage.setItem("cart", JSON.stringify(this.currentCart));
+      this.$bus.$emit("changeCart");
     },
-    addCouponCode() {
+    updateCart() {
       const vm = this;
-      if (vm.coupon_num !== "") {
-        vm.$store
-          .dispatch("cardModules/addCouponCode", vm.coupon_num)
-          .then(() => {
-            vm.coupon_num = "";
-          });
-      }
-    },
-    GoOrder() {
-      this.$router.push("/custom/customorder");
+      const api = `${process.env.VUE_APP_APIPATH}api/${process.env.VUE_APP_COSTOM}/cart`;
+      vm.$store.commit('ISLOADING', true);
+      vm.$http
+        .all(
+          vm.currentCart.map((item) => {
+            const cartItem = {
+              product_id: item.product.id,
+              qty: item.qty,
+            };
+            return vm.$http.post(api, { data: cartItem });
+          })
+        )
+        .then(() => {
+          vm.$store.commit('ISLOADING', false);
+          vm.$router.push("/custom/customorder");
+        });
     },
     ...mapActions("homeModules", ["CarouselProducts"]),
-    ...mapActions("cardModules", ["getCart"]),
   },
 };
 </script>

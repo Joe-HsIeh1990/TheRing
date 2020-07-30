@@ -3,11 +3,17 @@
     &-img {
         max-width: 180px;
     }
-    &-order {
-        background-color: #f3f3f3;
+    &-main{
+        width: 100%;
     }
-    &-list {
-        height: auto;
-        background-color: #f3f3f3;
+    &-num{
+        width: 135px;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+    input[type="number"] {
+        -moz-appearance: textfield;
     }
 }

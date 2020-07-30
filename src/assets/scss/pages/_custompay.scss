@@ -1,15 +1,7 @@
 .CustomPay {
-    &-card {
-        width: 70%;
-        @include phone(){
-            width: 80%;
-        }
-        label {
-            min-width: 100px;
-            margin-bottom: 0 !important;
-        }
-    }
     &-pay{
-        height: 280px;
+       input{
+           width: 70%;
+       }
     }
 }

@@ -68,8 +68,7 @@
           <a
             href="#"
             class="btn btn-dark btn-block text-warning px-4"
-            :class="{ disabled:theProduct.id === cartdisable }"
-            @click="addtoCart(theProduct.id,counts)"
+            @click="addtoCart(theProduct,counts)"
           >立即下單</a>
         </div>
       </div>
@@ -94,19 +93,10 @@ export default {
     };
   },
   methods: {
-    addtoCart(id, qty) {
-      const vm = this;
-      vm.cartdisable = id;
-      vm.$store.dispatch("cardModules/addtoCart", { id, qty }).then(() => {
-        $("#productModal").modal("hide");
-        vm.$bus.$emit(
-            "message:push",
-            "商品已加入購物車內",
-            "danger"
-          );
-        vm.cartdisable = "";
-        vm.counts = 1;
-      });
+    addtoCart(addItem, qty = 1) {
+      this.$bus.$emit("addCart", addItem, qty);
+       $("#productModal").modal("hide");
+       this.$bus.$emit("message:push", "加入成功", "warning");
     },
   },
 };

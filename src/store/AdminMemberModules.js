@@ -5,7 +5,6 @@ export default {
     strict: true,
     namespaced: true,
     state: {
-
     },
     actions: {
         signin(context, payload) {

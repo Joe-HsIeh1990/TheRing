@@ -44,7 +44,7 @@
           </p>
           <a
             class="btn btn-dark btn-block text-warning"
-            @click="addtoCart(currentProduct.id,counts)"
+            @click="addtoCart(currentProduct,counts)"
           >加入購物車</a>
         </div>
       </div>
@@ -107,7 +107,7 @@ export default {
   },
   computed: {
     filterscarousel() {
-      let vm = this;
+      const vm = this;
       let newarr = [];
       newarr = vm.carouselproducts.filter((item) => {
         if (item.title !== vm.currentProduct.title) {
@@ -135,16 +135,9 @@ export default {
     this.CarouselProducts();
   },
   methods: {
-    addtoCart(id, qty = 1) {
-      const vm = this;
-      vm.$store.dispatch("cardModules/addtoCart", { id, qty }).then(() => {
-        vm.counts = 1;
-        vm.$bus.$emit(
-            "message:push",
-            "商品已加入購物車內",
-            "danger"
-          );
-      });
+    addtoCart(addItem, qty = 1) {
+      this.$bus.$emit("addCart", addItem, qty);
+      this.$bus.$emit("message:push", "加入成功", "warning");
     },
     ...mapActions("productsModules", ["getCurrentPageProduct"]),
     ...mapActions("homeModules", ["CarouselProducts"]),

@@ -5,8 +5,6 @@ export default {
   namespaced: true,
   state: {
     cart: {},
-    cartlength: 0,
-    cartItem: '',
   },
   actions: {
     getCart(context) {
@@ -16,41 +14,8 @@ export default {
         context.commit('ISLOADING', false, { root: true });
         if (response.data.success) {
           context.commit('CART', response.data.data);
-          context.commit('CARTITEM', '');
         }
       });
-    },
-    addtoCart(context, { id, qty = 1 }) {
-      const api = `${process.env.VUE_APP_APIPATH}api/${process.env.VUE_APP_COSTOM}/cart`;
-      context.commit('ISLOADING', true, { root: true });
-      context.commit('CARTITEM', id);
-      const cart = {
-        product_id: id,
-        qty,
-      };
-      return new Promise((resolve) => {
-        axios.post(api, { data: cart }).then((response) => {
-          context.commit('ISLOADING', false, { root: true });
-          if (response.data.success) {
-            context.dispatch('getCart');
-            resolve();
-          }
-        });
-      });
-    },
-    deleteCart(context, id) {
-      const api = `${process.env.VUE_APP_APIPATH}api/${process.env.VUE_APP_COSTOM}/cart/${id}`;
-      context.commit('CARTITEM', id);
-      context.commit('ISLOADING', true, { root: true });
-      return new Promise((resolve) => {
-        axios.delete(api).then((response) => {
-          context.commit('ISLOADING', false, { root: true });
-          if (response.data.success) {
-            context.dispatch('getCart');
-            resolve();
-          }
-        });
-      })
     },
     addCouponCode(context, couponcode) {
       const api = `${process.env.VUE_APP_APIPATH}api/${process.env.VUE_APP_COSTOM}/coupon`;
@@ -72,25 +37,6 @@ export default {
   mutations: {
     CART(state, payload) {
       state.cart = payload;
-      // state.cartlength = payload.carts.length;
-      let arr = [];
-      let newarr = [];
-      state.cart.carts.forEach((item) => {
-        let str = item.product_id;
-        if(typeof arr[str] === 'undefined'){
-          arr[str] = item;
-          console.log( arr[str].product)
-        }else{
-          arr[str].qty += item.qty;
-        }
-      });
-      arr.splice(0,1);
-      newarr.push(arr);
-      state.cart.carts = newarr;
-      state.cartlength = state.cart.carts.length;
-    },
-    CARTITEM(state, payload) {
-      state.cartItem = payload;
     },
   },
   getters: {

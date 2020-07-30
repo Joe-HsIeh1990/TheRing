@@ -14,7 +14,7 @@
     >
       <div class="modal-content">
         <div class="modal-body leave-modal">
-          <p>您的訂單尚未付款，確定要離開此頁?</p>
+          <p>您的訂單尚未完成，確定要離開此頁? </p>
           <div class="text-right">
             <button
               type="button"

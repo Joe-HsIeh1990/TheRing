@@ -35,57 +35,83 @@
         v-if="cart.total"
         class="row flex-row-reverse"
       >
-        <div class="col-lg-5 mb-5">
-          <div class="customerCart-order">
-            <div class="p-3">
+        <div class="col-lg-5">
+          <div class="customerCart-order border">
+            <div
+              class="d-flex align-items-center justify-content-center border-bottom p-3 bg-primary"
+            >
               <h2 class="h5">
-                訂單確認
+                訂單金額
               </h2>
-              <hr class="my-2">
-              <div>
-                <div
-                  v-for="items in cart.carts"
-                  :key="items.id"
-                  class="d-flex customerCart-order-item align-items-start mb-3"
-                >
-                  <div class="d-flex flex-column mt-1">
-                    <h5 class="mb-0">
-                      {{ items.product.title }}
-                    </h5>
-                    <span>{{ items.qty }} 隻</span>
-                  </div>
-                  <span class="ml-auto order-item-price">{{ items.total | currency }}</span>
-                </div>
-                <div
-                  v-if="cart.final_total&&cart.final_total !==cart.total"
-                  class="d-flex customerCart-order-item align-items-start text-success"
-                >
-                  <div class="d-flex flex-column">
-                    <h5 class="mb-0">
-                      已使用優惠
-                    </h5>
-                    <span>{{ (cart.final_total/cart.total*100) }}% 折扣</span>
-                  </div>
-                  <span
-                    class="ml-auto order-item-price"
-                  >-{{ (cart.total -cart.final_total) | currency }}</span>
-                </div>
-                <hr class="my-2">
-              </div>
             </div>
-            <div class="px-3 pb-3 customerCart-order-Nextstep">
-              <div class="d-flex justify-content-end align-items-end">
-                <span class="subtotal mr-2">總計</span>
-                <span class="total h3 mb-0 text-danger">{{ cart.final_total | currency }}</span>
+            <div
+              v-for="(items ,index) in cart.carts"
+              :key="index"
+              class="d-flex customerCart-order-item align-items-start p-3"
+            >
+              <div class="d-flex flex-column mt-1">
+                <h5 class="mb-0 h6">
+                  {{ items.product.title }}
+                </h5>
+                <span>{{ items.qty }}隻</span>
+              </div>
+              <span class="ml-auto order-item-price">{{ items.total | currency }}</span>
+            </div>
+            <div
+              v-if="cart.final_total && cart.final_total !== cart.total"
+              class="d-flex customerCart-order-item align-items-start text-success p-3"
+            >
+              <div class="d-flex flex-column mb-3">
+                <h5 class="mb-0">
+                  已套用優惠
+                </h5>
+                <span>{{ (cart.final_total/cart.total*100) }}% OFF</span>
+              </div>
+              <span class="ml-auto order-item-price">{{ (cart.total -cart.final_total) | currency }}</span>
+            </div>
+            <form
+              v-if="cart.final_total && cart.final_total === cart.total"
+              action
+              class="p-3"
+            >
+              <div class="input-group input-group-sm">
+                <input
+                  v-model="coupon_num"
+                  type="text"
+                  class="form-control"
+                  placeholder="請輸入優惠碼"
+                >
+                <div class="input-group-append">
+                  <button
+                    class="btn btn-outline-secondary"
+                    type="button"
+                    @click="addCouponCode"
+                  >
+                    套用優惠碼
+                  </button>
+                </div>
+              </div>
+            </form>
+            <hr class="my-3">
+            <div class="pb-3 px-3 pt-0 customerCart-order-Next">
+              <div class="d-flex justify-content-end align-content-center mb-3 align-items-end">
+                <p class="subtotal mr-2">
+                  總計
+                </p>
+                <p class="total h3 mb-0 text-danger">
+                  {{ cart.final_total | currency }}
+                </p>
               </div>
             </div>
           </div>
         </div>
         <div class="col-lg-7 mb-5">
-          <div>
-            <h4 class="mb-4 d-flex">
-              <span class="plane mr-1" />訂購人資料
+          <div class="text-center">
+            <h4 class="py-3 bg-primary mx-auto">
+              訂購人資料
             </h4>
+          </div>
+          <div class="border p-3">
             <ValidationObserver v-slot="{ invalid }">
               <form @submit.prevent="createOrder">
                 <div class="form-group">
@@ -232,6 +258,7 @@ export default {
         message: "",
       },
       leave: false,
+      coupon_num: "",
     };
   },
   computed: {
@@ -252,16 +279,40 @@ export default {
     backToCart() {
       this.$router.go(-1);
     },
+    deleteCart(out) {
+      const vm = this;
+      vm.$store.commit("ISLOADING", true);
+      vm.$http
+        .all(
+          vm.cart.carts.map((item) => {
+            const api = `${process.env.VUE_APP_APIPATH}api/${process.env.VUE_APP_COSTOM}/cart/${item.id}`;
+            return vm.$http.delete(api);
+          })
+        )
+        .then(() => {
+          vm.$store.commit("ISLOADING", false);
+          out();
+        });
+    },
+    addCouponCode() {
+      const vm = this;
+      if (vm.coupon_num !== "") {
+        this.$store
+          .dispatch("cardModules/addCouponCode", vm.coupon_num)
+          .then(() => {
+            vm.coupon_num = "";
+          });
+      }
+    },
   },
-
   beforeRouteLeave(to, from, next) {
     const vm = this;
     if (vm.leave) {
-      next();
+      vm.deleteCart(next);
     } else {
       $("#check").modal("show");
       $(".determin").on("click", () => {
-        next();
+        vm.deleteCart(next);
       });
       $(".cancel").on("click", () => {
         next(false);

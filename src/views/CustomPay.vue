@@ -82,15 +82,16 @@
           </div>
         </div>
       </div>
-
       <div class="CustomPay-pay border mb-3">
-        <h2 class="mb-0 py-2 pl-3 h4 border bg-dark text-white">
-          信用卡資訊
-        </h2>
-        <div class="creditcard px-3 pt-3">
+        <div class="border bg-dark text-white">
+          <h2 class="mb-0 py-2 pl-3 h4">
+            信用卡資訊
+          </h2>
+        </div>
+        <div class="p-3">
           <ValidationObserver v-slot="{ invalid }">
             <form @submit.prevent="payOrder">
-              <div class="py-2 CustomPay-card d-flex align-items-center">
+              <div class="form-group ">
                 <label for="card-num">信用卡卡號:</label>
                 <ValidationProvider
                   v-slot="{ errors , classes }"
@@ -102,15 +103,15 @@
                       id="card-num"
                       v-model="pay.id"
                       type="text"
-                      class="form-lists"
+                      class="form-control"
                       name="card-num"
                       placeholder="請輸入16位信用卡卡號"
                     >
-                    <span class="ml-md-2">{{ errors[0] }}</span>
+                    <span>{{ errors[0] }}</span>
                   </div>
                 </ValidationProvider>
               </div>
-              <div class="py-2 CustomPay-card d-flex align-items-center">
+              <div class="form-group">
                 <label for="card-date">有效期限:</label>
                 <ValidationProvider
                   v-slot="{ errors , classes }"
@@ -122,15 +123,15 @@
                       id="card-date"
                       v-model="pay.date"
                       type="text"
-                      class="form-lists"
+                      class="form-control"
                       name="card-date"
                       placeholder="例: 0320"
                     >
-                    <span class="ml-md-2">{{ errors[0] }}</span>
+                    <span>{{ errors[0] }}</span>
                   </div>
                 </ValidationProvider>
               </div>
-              <div class="py-2 form-group CustomPay-card d-flex align-items-center">
+              <div class="form-group">
                 <label for="card-pay">背面安全碼:</label>
                 <ValidationProvider
                   v-slot="{ errors , classes }"
@@ -142,22 +143,22 @@
                       id="card-pay"
                       v-model="pay.num"
                       type="text"
-                      class="form-lists"
+                      class="form-control"
                       name="card-pay"
                       placeholder="例: 540"
                     >
-                    <span class="ml-md-2">{{ errors[0] }}</span>
+                    <span>{{ errors[0] }}</span>
                   </div>
                 </ValidationProvider>
-              </div>
-              <div class="text-right py-2 my-3">
-                <button
-                  type="submit"
-                  class="btn btn-dark text-warning"
-                  :disabled="invalid"
-                >
-                  確認付款
-                </button>
+                <div class="text-right py-2 my-3">
+                  <button
+                    type="submit"
+                    class="btn btn-dark text-warning"
+                    :disabled="invalid"
+                  >
+                    確認付款
+                  </button>
+                </div>
               </div>
             </form>
           </ValidationObserver>
