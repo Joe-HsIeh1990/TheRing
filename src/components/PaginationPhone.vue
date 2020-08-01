@@ -2,7 +2,7 @@
   <nav class="dropdown">
     <button
       id="dropdownMenuButton"
-      class="btn bg-black dropdown-toggle text-white"
+      class="btn bg-dark dropdown-toggle text-white"
       type="button"
       data-toggle="dropdown"
       aria-haspopup="true"
