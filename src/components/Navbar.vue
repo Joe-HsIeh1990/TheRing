@@ -153,7 +153,7 @@
               </table>
               <a
                 href="#"
-                class="GoCustomerCart btn btn-danger btn-block"
+                class="GoCustomerCart btn btn-dark text-warning btn-block"
                 @click.prevent="GoCustomerCart"
               >前往購物車</a>
             </div>

@@ -69,29 +69,42 @@
               </div>
               <span class="ml-auto order-item-price">{{ (cart.total -cart.final_total) | currency }}</span>
             </div>
-            <form
-              v-if="cart.final_total && cart.final_total === cart.total"
-              action
-              class="p-3"
-            >
-              <div class="input-group input-group-sm">
-                <input
-                  v-model="coupon_num"
-                  type="text"
-                  class="form-control"
-                  placeholder="請輸入優惠碼"
-                >
-                <div class="input-group-append">
+            <ValidationObserver v-slot="{ invalid }">
+              <form
+                v-if="cart.final_total && cart.final_total === cart.total"
+                action
+                class="p-3 d-flex justify-content-center"
+              >
+                <div class="input-group">
+                  <ValidationProvider
+                    v-slot="{ errors, classes }"
+                    name="優惠碼"
+                    rules="required|coupones"
+                  >
+                    <div :class=" classes">
+                      <input
+                        v-model="coupon_num"
+                        type="text"
+                        class="form-control"
+                        placeholder="請輸入優惠碼"
+                      >
+                      <span>{{ errors[0] }}</span>
+                    </div>
+                  </ValidationProvider>
+                </div>
+
+                <div class="input-group">
                   <button
-                    class="btn btn-outline-secondary"
+                    class="coupones-btn btn btn-outline-secondary"
                     type="button"
+                    :disabled="invalid"
                     @click="addCouponCode"
                   >
                     套用優惠碼
                   </button>
                 </div>
-              </div>
-            </form>
+              </form>
+            </ValidationObserver>
             <hr class="my-3">
             <div class="pb-3 px-3 pt-0 customerCart-order-Next">
               <div class="d-flex justify-content-end align-content-center mb-3 align-items-end">

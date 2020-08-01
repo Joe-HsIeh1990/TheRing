@@ -8,6 +8,7 @@ import store from './store';
 
 // vue-router
 import router from './router';
+import Router from 'vue-router'
 
 // axios
 import axios from 'axios';
@@ -121,6 +122,13 @@ extend('pay', {
   params: ['length'],
   message: '請輸入3位數背後安全碼',
 })
+extend('coupones', {
+  validate(value) {
+    return value.length == 3 && /\d/.test(value);
+  },
+  params: ['length'],
+  message: '請輸入3位數優惠碼',
+})
 configure({
   classes: {
     valid: 'valid',
@@ -144,6 +152,11 @@ new Vue({
 }).$mount('#app')
 
 //router
+
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth) {
     const api = `${process.env.VUE_APP_APIPATH}api/user/check`;
